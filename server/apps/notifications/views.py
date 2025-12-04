@@ -88,9 +88,13 @@ class NotificationViewSet(viewsets.ModelViewSet):
         notification.delete_notification()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get'], permission_classes=[])
     def unread_count(self, request):
         """Get count of unread notifications"""
+        # If user is not authenticated, return 0
+        if not request.user.is_authenticated:
+            return Response({'unread_count': 0})
+        
         user = request.user
         count = Notification.objects.filter(
             recipient=user,

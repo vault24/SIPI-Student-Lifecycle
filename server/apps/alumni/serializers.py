@@ -38,6 +38,7 @@ class AlumniSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alumni
         fields = [
+            'id',
             'student',
             'alumniType',
             'transitionDate',
@@ -49,7 +50,7 @@ class AlumniSerializer(serializers.ModelSerializer):
             'createdAt',
             'updatedAt',
         ]
-        read_only_fields = ['transitionDate', 'createdAt', 'updatedAt']
+        read_only_fields = ['id', 'transitionDate', 'createdAt', 'updatedAt']
 
 
 class AlumniCreateSerializer(serializers.ModelSerializer):

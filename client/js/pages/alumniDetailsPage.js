@@ -4,8 +4,8 @@
 (function() {
     'use strict';
 
-function renderAlumniDetails(params) {
-    const alumni = dataManager.getAlumniById(params.id);
+async function renderAlumniDetails(params) {
+    const alumni = await dataManager.getAlumniById(params.id);
     
     if (!alumni) {
         showToast('Alumni record not found', 'error');
@@ -13,10 +13,11 @@ function renderAlumniDetails(params) {
         return;
     }
     
-    const student = dataManager.getStudent(alumni.studentId);
+    // Alumni object contains nested student data
+    const student = alumni.student;
     
     if (!student) {
-        showToast('Student not found', 'error');
+        showToast('Student data not found', 'error');
         navigateTo('/alumni');
         return;
     }
@@ -42,13 +43,13 @@ function renderAlumniDetails(params) {
             <!-- Profile Section -->
             <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
                 <div class="flex flex-col md:flex-row gap-6">
-                    <img src="${student.profilePhoto}" alt="${student.fullName}" class="w-32 h-32 rounded-full">
+                    <img src="${student.profilePhoto || '/assets/images/default-avatar.png'}" alt="${student.fullNameEnglish}" class="w-32 h-32 rounded-full object-cover">
                     <div class="flex-1">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">${student.fullName}</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">${student.fullNameEnglish}</h3>
                         <div class="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
                             <span class="flex items-center gap-1">
                                 <i data-lucide="graduation-cap" class="w-4 h-4"></i>
-                                ${student.department}
+                                ${student.department?.name || 'N/A'}
                             </span>
                             <span class="flex items-center gap-1">
                                 <i data-lucide="calendar" class="w-4 h-4"></i>
@@ -56,7 +57,7 @@ function renderAlumniDetails(params) {
                             </span>
                             <span class="flex items-center gap-1">
                                 <i data-lucide="hash" class="w-4 h-4"></i>
-                                ${student.rollNumber}
+                                ${student.currentRollNumber || 'N/A'}
                             </span>
                         </div>
                         <div class="flex flex-wrap gap-2">
@@ -68,7 +69,7 @@ function renderAlumniDetails(params) {
                                 alumni.currentSupportCategory === 'needs_extra_support' ? 'bg-red-100 text-red-800' :
                                 'bg-gray-100 text-gray-800'
                             }">
-                                ${alumni.currentSupportCategory.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                                ${alumni.currentSupportCategory ? alumni.currentSupportCategory.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) : 'No Support Needed'}
                             </span>
                         </div>
                     </div>

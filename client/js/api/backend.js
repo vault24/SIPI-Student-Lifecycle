@@ -74,21 +74,21 @@ const studentsAPI = {
     async uploadPhoto(id, photoFile) {
         const formData = new FormData();
         formData.append('photo', photoFile);
-        return await apiCall(() => http.upload(`/students/${id}/upload-photo/`, formData));
+        return await apiCall(() => http.upload(`/students/${id}/upload_photo/`, formData));
     },
 
     /**
      * Transition student to alumni
      */
     async transitionToAlumni(id, graduationYear) {
-        return await apiCall(() => http.post(`/students/${id}/transition-to-alumni/`, { graduationYear }));
+        return await apiCall(() => http.post(`/students/${id}/transition_to_alumni/`, { graduationYear }));
     },
 
     /**
      * Disconnect student studies
      */
     async disconnectStudies(id, reason, lastSemester) {
-        return await apiCall(() => http.post(`/students/${id}/disconnect-studies/`, {
+        return await apiCall(() => http.post(`/students/${id}/disconnect_studies/`, {
             discontinuedReason: reason,
             lastSemester: lastSemester,
         }));
@@ -127,15 +127,15 @@ const alumniAPI = {
      * Add career position
      */
     async addCareerPosition(id, positionData) {
-        return await apiCall(() => http.post(`/alumni/${id}/add-career-position/`, positionData));
+        return await apiCall(() => http.post(`/alumni/${id}/add_career_position/`, positionData));
     },
 
     /**
      * Update support category
      */
     async updateSupportCategory(id, category, notes) {
-        return await apiCall(() => http.put(`/alumni/${id}/update-support-category/`, {
-            currentSupportCategory: category,
+        return await apiCall(() => http.put(`/alumni/${id}/update_support_category/`, {
+            category: category,
             notes: notes,
         }));
     },

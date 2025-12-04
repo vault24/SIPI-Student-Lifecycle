@@ -169,10 +169,10 @@ async function renderAlumniCards(alumni) {
                 </div>
                 
                 <div class="flex gap-2">
-                    <button onclick="viewAlumniDetails('${student.id}')" class="flex-1 text-sm text-blue-600 hover:text-blue-700 font-medium">
+                    <button onclick="viewAlumniDetails('${alum.id}')" class="flex-1 text-sm text-blue-600 hover:text-blue-700 font-medium">
                         View Details
                     </button>
-                    <button onclick="editAlumni('${student.id}')" class="text-gray-600 hover:text-gray-700">
+                    <button onclick="editAlumni('${alum.id}')" class="text-gray-600 hover:text-gray-700">
                         <i data-lucide="edit" class="w-4 h-4"></i>
                     </button>
                 </div>

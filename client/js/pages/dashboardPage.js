@@ -215,7 +215,11 @@
             const deptStats = stats.students?.byDepartment || [];
             
             if (!deptStats || deptStats.length === 0) {
-                throw new Error('No department data available');
+                console.warn('No department data available yet');
+                if (errorContainer) {
+                    errorContainer.classList.remove('hidden');
+                }
+                return;
             }
 
             // Transform data for chart

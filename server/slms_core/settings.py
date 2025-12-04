@@ -153,7 +153,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Media files (User uploaded files)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -181,3 +186,14 @@ CORS_ALLOW_CREDENTIALS = True
 # Allow all origins in development (be more restrictive in production)
 if DEBUG:
     CORS_ALLOW_ALL_ORIGINS = True
+
+# CSRF Configuration for frontend
+CSRF_TRUSTED_ORIGINS = config(
+    'CSRF_TRUSTED_ORIGINS',
+    default='http://localhost:5500,http://127.0.0.1:5500,http://192.168.1.250',
+    cast=Csv()
+)
+
+# Exempt API endpoints from CSRF for development
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SAMESITE = 'Lax'
