@@ -1,0 +1,13 @@
+{
+  "name": "slms-frontend",
+  "version": "1.0.0",
+  "description": "Student Lifecycle Management System - Premium UI Redesign",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "test:watch": "node --test --watch"
+  },
+  "devDependencies": {
+    "fast-check": "^3.13.0"
+  }
+}

@@ -371,3 +371,121 @@
     - Test search and filter functionality
     - Ensure smooth transitions and animations
     - _Requirements: 2.3, 3.2, 3.3, 11.5_
+
+- [ ] 17. Implement Discontinued Students Feature
+
+  - [x] 17.1 Update sidebar navigation with Discontinued Students menu item
+
+
+
+    - Add "Discontinued Students" menu item to sidebar with user-x icon
+    - Position menu item near Alumni in the navigation list
+    - Ensure proper active state highlighting when route is active
+    - _Requirements: 13.1, 13.10_
+
+
+
+
+
+  - [ ] 17.2 Update Student Model to support discontinued status
+    - Add 'discontinued' as a valid status value in Student Model
+
+    - Add discontinuedReason field (optional string)
+    - Add lastSemester field (optional number)
+
+
+    - Update mock data generator to include sample discontinued students
+    - _Requirements: 13.2_
+
+  - [x] 17.3 Create discontinuedStudentsPage.js with page structure
+
+    - Create new file client/js/pages/discontinuedStudentsPage.js
+    - Implement page header with title "Discontinued Students"
+
+    - Add search bar for filtering by name, roll number
+    - Add department filter dropdown
+    - Create table structure with columns: Photo, Name, Roll, Department, Last Semester, Reason, Status, Actions
+    - _Requirements: 13.2, 13.3, 13.7_
+
+  - [x] 17.4 Implement discontinued students data filtering and display
+
+    - Filter students where status === 'discontinued'
+    - Implement real-time search functionality
+
+    - Implement department filter
+    - Display students in table format with all required columns
+    - Add yellow/gray status badge for discontinued status
+    - Create responsive card view for mobile devices
+    - _Requirements: 13.2, 13.3, 13.4, 13.7_
+
+  - [x] 17.5 Implement View and Reinstate functionality
+
+    - Add View button that navigates to student details page
+
+
+
+    - Add Reinstate button for each discontinued student
+    - Implement reinstate confirmation modal
+    - Update student status from 'discontinued' to 'active' on confirmation
+    - Display success toast notification after reinstatement
+    - Refresh the discontinued students list after reinstatement
+    - _Requirements: 13.5, 13.6, 13.8, 13.9_
+
+  - [x] 17.6 Register discontinued students route and integrate with app
+
+
+    - Register /discontinued route in app.js
+    - Add discontinuedStudentsPage.js script tag to index.html
+    - Test navigation to discontinued students page
+    - Verify sidebar highlighting works correctly
+    - Test all functionality (search
+
+
+- [ ] 17. Implement Discontinued Students Feature
+
+  - [ ] 17.1 Update sidebar navigation with Discontinued Students menu item
+    - Add "Discontinued Students" menu item to sidebar with user-x icon
+    - Position menu item near Alumni in the navigation list
+    - Ensure proper active state highlighting when route is active
+    - _Requirements: 13.1, 13.10_
+
+  - [ ] 17.2 Update Student Model to support discontinued status
+    - Add 'discontinued' as a valid status value in Student Model
+    - Add discontinuedReason field (optional string)
+    - Add lastSemester field (optional number)
+    - Update mock data generator to include sample discontinued students
+    - _Requirements: 13.2_
+
+  - [ ] 17.3 Create discontinuedStudentsPage.js with page structure
+    - Create new file client/js/pages/discontinuedStudentsPage.js
+    - Implement page header with title "Discontinued Students"
+    - Add search bar for filtering by name, roll number
+    - Add department filter dropdown
+    - Create table structure with columns: Photo, Name, Roll, Department, Last Semester, Reason, Status, Actions
+    - _Requirements: 13.2, 13.3, 13.7_
+
+  - [ ] 17.4 Implement discontinued students data filtering and display
+    - Filter students where status === 'discontinued'
+    - Implement real-time search functionality
+    - Implement department filter
+    - Display students in table format with all required columns
+    - Add yellow/gray status badge for discontinued status
+    - Create responsive card view for mobile devices
+    - _Requirements: 13.2, 13.3, 13.4, 13.7_
+
+  - [ ] 17.5 Implement View and Reinstate functionality
+    - Add View button that navigates to student details page
+    - Add Reinstate button for each discontinued student
+    - Implement reinstate confirmation modal
+    - Update student status from 'discontinued' to 'active' on confirmation
+    - Display success toast notification after reinstatement
+    - Refresh the discontinued students list after reinstatement
+    - _Requirements: 13.5, 13.6, 13.8, 13.9_
+
+  - [ ] 17.6 Register discontinued students route and integrate with app
+    - Register /discontinued route in app.js
+    - Add discontinuedStudentsPage.js script tag to index.html
+    - Test navigation to discontinued students page
+    - Verify sidebar highlighting works correctly
+    - Test all functionality (search, filter, view, reinstate)
+    - _Requirements: 13.1, 13.10_

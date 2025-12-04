@@ -60,6 +60,7 @@ The application uses hash-based routing (#/page-name) to enable navigation witho
 - `#/documents` → Documents Page
 - `#/marks` → Marks & Attendance
 - `#/alumni` → Alumni Page
+- `#/discontinued` → Discontinued Students Page
 - `#/login` → Login Page
 - `#/admin` → Admin Dashboard
 
@@ -280,6 +281,42 @@ Features:
 - Close button
 ```
 
+### 7. Discontinued Students Components
+
+#### Discontinued Student Card
+```javascript
+Component: DiscontinuedStudentCard
+Props: {
+  student: object,
+  onView: function,
+  onReinstate: function
+}
+Features:
+- Profile photo display
+- Student name and roll number
+- Department and last semester
+- Discontinuation reason
+- Yellow/gray status badge
+- View and Reinstate action buttons
+- Responsive layout
+```
+
+#### Reinstate Confirmation Modal
+```javascript
+Component: ReinstateModal
+Props: {
+  studentName: string,
+  onConfirm: function,
+  onCancel: function
+}
+Features:
+- Student name display
+- Confirmation message
+- Warning about status change
+- Confirm and Cancel buttons
+- Keyboard support (ESC to close)
+```
+
 ## Data Models
 
 ### Student Model
@@ -297,7 +334,9 @@ Features:
   email: string,
   address: string,
   profilePhoto: string (base64 or URL),
-  status: 'active' | 'inactive' | 'graduated',
+  status: 'active' | 'inactive' | 'graduated' | 'discontinued',
+  discontinuedReason: string (optional - reason for discontinuation),
+  lastSemester: number (optional - last semester attended before discontinuation),
   enrollmentDate: string (ISO date),
   createdAt: string (ISO timestamp),
   updatedAt: string (ISO timestamp)
@@ -567,6 +606,42 @@ All data will be stored in localStorage with the following keys:
 - ChartContainer (x2)
 - DataTable (recent activities)
 - Button components
+
+### 10. Discontinued Students Page
+
+**Layout:**
+- Page header with title "Discontinued Students"
+- Search and filter bar (by name, roll number, department)
+- Data table with columns:
+  - Profile Photo
+  - Name
+  - Roll Number
+  - Department
+  - Last Semester
+  - Reason
+  - Status Badge (yellow/gray)
+  - Actions (View, Reinstate)
+- Pagination controls
+- Mobile: Card-based list view
+
+**Components Used:**
+- Navbar
+- Sidebar
+- Search input
+- Dropdown filters (department)
+- DataTable
+- Status badge component
+- ConfirmModal (for reinstatement confirmation)
+- Button components
+- Pagination
+
+**Features:**
+- Real-time search filtering
+- Filter by department
+- Reinstate functionality with confirmation
+- View student details
+- Status badge display
+- Responsive card view on mobile
 
 ## Design System
 

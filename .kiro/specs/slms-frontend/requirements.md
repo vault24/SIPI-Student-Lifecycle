@@ -163,3 +163,20 @@ The Institute Student Lifecycle Management System (SLMS) is a comprehensive web-
 3. THE SLMS SHALL include icons from Lucide or similar icon library
 4. THE SLMS SHALL use card-based layouts for organizing content sections
 5. THE SLMS SHALL maintain consistent spacing, typography, and color schemes across all pages
+
+### Requirement 13
+
+**User Story:** As an admin user, I want to view and manage students who have discontinued their studies, so that I can track students who left the institute and potentially reinstate them if they return.
+
+#### Acceptance Criteria
+
+1. THE SLMS SHALL provide a sidebar navigation menu item labeled "Discontinued Students" with a user-x icon positioned near the Alumni menu item
+2. WHEN the Admin User navigates to the discontinued students page, THE SLMS SHALL display a list of all Student Records where status equals "discontinued"
+3. THE SLMS SHALL display discontinued students in a table format with columns for Name, Roll Number, Department, Last Semester, and Reason
+4. THE SLMS SHALL display a status badge in yellow or gray color for discontinued students
+5. THE SLMS SHALL provide a View button for each discontinued student to access their full profile
+6. THE SLMS SHALL provide a Reinstate button for each discontinued student to change their status back to "active"
+7. THE SLMS SHALL include search and filter functionality for discontinued students by name, roll number, or department
+8. WHEN the Admin User clicks the Reinstate button, THE SLMS SHALL display a confirmation modal before changing the student status
+9. WHEN a student is reinstated, THE SLMS SHALL update the student status to "active" and display a success notification
+10. THE SLMS SHALL highlight the Discontinued Students menu item when the page is active

@@ -1,0 +1,451 @@
+/* Animations - Premium UI Redesign */
+/* Keyframes, transitions, and animation utilities */
+
+/* ========================================
+   KEYFRAME ANIMATIONS
+   ======================================== */
+
+/* Fade In */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Down */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide In Right */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide In Left */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Pulse */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Bounce */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Spin */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Shimmer (for loading skeletons) */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Gradient Shift */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glow Pulse */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.6);
+  }
+}
+
+/* Shake */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+/* ========================================
+   ANIMATION UTILITY CLASSES
+   ======================================== */
+
+/* Fade Animations */
+.animate-fade-in {
+  animation: fadeIn var(--duration-normal) var(--easing-smooth);
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp var(--duration-normal) var(--easing-smooth);
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown var(--duration-normal) var(--easing-smooth);
+}
+
+/* Slide Animations */
+.animate-slide-in-right {
+  animation: slideInRight var(--duration-normal) var(--easing-smooth);
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft var(--duration-normal) var(--easing-smooth);
+}
+
+/* Scale Animation */
+.animate-scale-in {
+  animation: scaleIn var(--duration-normal) var(--easing-smooth);
+}
+
+/* Pulse Animation */
+.animate-pulse {
+  animation: pulse 2s var(--easing-smooth) infinite;
+}
+
+/* Bounce Animation */
+.animate-bounce {
+  animation: bounce 1s var(--easing-smooth) infinite;
+}
+
+/* Spin Animation */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Shimmer Animation (for skeletons) */
+.animate-shimmer {
+  animation: shimmer 2s linear infinite;
+  background: linear-gradient(to right, #f0f0f0 4%, #e0e0e0 25%, #f0f0f0 36%);
+  background-size: 1000px 100%;
+}
+
+/* Gradient Shift Animation */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+/* Glow Pulse Animation */
+.animate-glow {
+  animation: glowPulse 2s var(--easing-smooth) infinite;
+}
+
+/* Shake Animation */
+.animate-shake {
+  animation: shake 0.5s var(--easing-smooth);
+}
+
+/* ========================================
+   TRANSITION UTILITIES
+   ======================================== */
+
+/* Base Transitions */
+.transition-all {
+  transition: all var(--duration-normal) var(--easing-smooth);
+}
+
+.transition-colors {
+  transition: color var(--duration-normal) var(--easing-smooth),
+              background-color var(--duration-normal) var(--easing-smooth),
+              border-color var(--duration-normal) var(--easing-smooth);
+}
+
+.transition-transform {
+  transition: transform var(--duration-normal) var(--easing-smooth);
+}
+
+.transition-opacity {
+  transition: opacity var(--duration-normal) var(--easing-smooth);
+}
+
+.transition-shadow {
+  transition: box-shadow var(--duration-normal) var(--easing-smooth);
+}
+
+/* Duration Variants */
+.transition-fast {
+  transition-duration: var(--duration-fast);
+}
+
+.transition-normal {
+  transition-duration: var(--duration-normal);
+}
+
+.transition-slow {
+  transition-duration: var(--duration-slow);
+}
+
+/* Easing Variants */
+.ease-linear {
+  transition-timing-function: var(--easing-linear);
+}
+
+.ease-smooth {
+  transition-timing-function: var(--easing-smooth);
+}
+
+.ease-in {
+  transition-timing-function: var(--easing-in);
+}
+
+.ease-out {
+  transition-timing-function: var(--easing-out);
+}
+
+.ease-in-out {
+  transition-timing-function: var(--easing-in-out);
+}
+
+.ease-bounce {
+  transition-timing-function: var(--easing-bounce);
+}
+
+/* ========================================
+   HOVER EFFECTS
+   ======================================== */
+
+/* Lift Effect */
+.hover-lift {
+  transition: transform var(--duration-fast) var(--easing-smooth),
+              box-shadow var(--duration-fast) var(--easing-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Scale Effect */
+.hover-scale {
+  transition: transform var(--duration-fast) var(--easing-smooth);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Glow Effect */
+.hover-glow {
+  transition: box-shadow var(--duration-fast) var(--easing-smooth);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+/* Brightness Effect */
+.hover-brighten {
+  transition: filter var(--duration-fast) var(--easing-smooth);
+}
+
+.hover-brighten:hover {
+  filter: brightness(1.1);
+}
+
+/* ========================================
+   LOADING STATES
+   ======================================== */
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(99, 102, 241, 0.2);
+  border-top-color: var(--color-primary-500);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+.loading-dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary-500);
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* ========================================
+   ENTRANCE ANIMATIONS WITH DELAYS
+   ======================================== */
+
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.2s;
+}
+
+.stagger-3 {
+  animation-delay: 0.3s;
+}
+
+.stagger-4 {
+  animation-delay: 0.4s;
+}
+
+.stagger-5 {
+  animation-delay: 0.5s;
+}
+
+/* ========================================
+   REDUCED MOTION SUPPORT
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .animate-pulse,
+  .animate-bounce,
+  .animate-spin,
+  .animate-shimmer,
+  .animate-gradient,
+  .animate-glow {
+    animation: none !important;
+  }
+}
+
+/* ========================================
+   PAGE TRANSITION
+   ======================================== */
+
+.page-enter {
+  animation: fadeInUp var(--duration-normal) var(--easing-smooth);
+}
+
+.page-exit {
+  animation: fadeInDown var(--duration-normal) var(--easing-smooth) reverse;
+}
+
+/* ========================================
+   MODAL ANIMATIONS
+   ======================================== */
+
+.modal-backdrop-enter {
+  animation: fadeIn var(--duration-fast) var(--easing-smooth);
+}
+
+.modal-enter {
+  animation: scaleIn var(--duration-normal) var(--easing-bounce);
+}
+
+.modal-exit {
+  animation: scaleIn var(--duration-fast) var(--easing-smooth) reverse;
+}
+
+/* ========================================
+   TOAST ANIMATIONS
+   ======================================== */
+
+.toast-enter {
+  animation: slideInRight var(--duration-normal) var(--easing-smooth);
+}
+
+.toast-exit {
+  animation: slideInRight var(--duration-fast) var(--easing-smooth) reverse;
+}
