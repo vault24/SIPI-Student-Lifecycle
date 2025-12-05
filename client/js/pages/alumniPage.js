@@ -191,8 +191,12 @@ function renderAlumniCategoryBoxes(alumni) {
         if (supportGroups[supportCategory]) {
             supportGroups[supportCategory].push(alum);
         }
-        if (positionGroups[positionType]) {
+        // Only add to position group if the position is marked as current
+        if (alum.currentPosition && alum.currentPosition.isCurrent && positionGroups[positionType]) {
             positionGroups[positionType].push(alum);
+        } else if (!alum.currentPosition && positionGroups['other']) {
+            // Only add to 'other' if there's no current position at all
+            positionGroups['other'].push(alum);
         }
     });
 

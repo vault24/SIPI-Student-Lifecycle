@@ -64,7 +64,7 @@ class PlaceholderEngine {
       'ISSUE_DATE': this.formatDate(new Date()),
       'STUDENT_PHOTO': studentData.profilePhoto || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="160" height="160"%3E%3Crect fill="%23e5e7eb" width="160" height="160"/%3E%3C/svg%3E',
       'QR_CODE': '', // Will be generated separately
-      'INSTITUTE_NAME': 'Sylhet Institute of Professional Institute',
+      'INSTITUTE_NAME': 'Sirajganj Polytechnic Institute',
       'INSTITUTE_LOGO': '', // Will be set from config
       'PRINCIPAL_NAME': 'Dr. Principal Name',
       'PRINCIPAL_SIGNATURE': '', // Placeholder for signature

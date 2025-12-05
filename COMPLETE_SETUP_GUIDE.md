@@ -120,7 +120,7 @@ Open a new terminal and run:
 cd "G:\Collage project\Database\client"
 # Your frontend command here
 ```
-
+python -m http.server 8000
 ---
 
 ## ✅ Verification Checklist

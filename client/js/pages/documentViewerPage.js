@@ -37,15 +37,15 @@
       }
 
       // Load and render the appropriate template
-      const template = await loadDocumentTemplate(documentType);
+      const template = await loadDocumentTemplate(documentType, student);
       if (!template) {
         showErrorToast('Unable to load document template');
         navigateTo(`/student/${studentId}`);
         return;
       }
 
-      // Replace placeholders with student data
-      const renderedDocument = placeholderEngine.replacePlaceholders(template, student);
+      // Replace placeholders with student data (only if template uses placeholders)
+      const renderedDocument = template.includes('{{') ? placeholderEngine.replacePlaceholders(template, student) : template;
 
       // Check for unreplaced placeholders
       if (placeholderEngine.hasUnreplacedPlaceholders(renderedDocument)) {
@@ -89,22 +89,63 @@
           <style>
             @media print {
               body {
-                background: white;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
               }
-              .navbar, .sidebar, #navbar, #sidebar {
+              
+              html {
+                margin: 0 !important;
+                padding: 0 !important;
+              }
+              
+              /* Hide all UI elements */
+              #navbar, #sidebar, .navbar, .sidebar, nav, footer {
                 display: none !important;
               }
+              
+              /* Hide header with navigation and buttons */
+              .max-w-6xl > div:first-child {
+                display: none !important;
+              }
+              
+              /* Hide action buttons */
+              button {
+                display: none !important;
+              }
+              
+              /* Show document container */
               .max-w-6xl {
-                max-width: 100%;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
               }
+              
               .print-container {
-                box-shadow: none;
-                border: none;
-                padding: 0;
-                margin: 0;
+                box-shadow: none !important;
+                border: none !important;
+                padding: 40px !important;
+                margin: 0 !important;
+                background: white !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                display: block !important;
               }
+              
+              .document-container {
+                display: block !important;
+                visibility: visible !important;
+                margin: 0 !important;
+                padding: 0 !important;
+              }
+              
               .document-header, .document-content, .document-footer {
                 page-break-inside: avoid;
+              }
+              
+              /* Prevent page margins */
+              @page {
+                margin: 0.5in;
               }
             }
           </style>
@@ -123,9 +164,10 @@
   /**
    * Load document template from file
    * @param {string} documentType - Type of document
+   * @param {object} student - Student data object
    * @returns {Promise<string>} - Template HTML
    */
-  async function loadDocumentTemplate(documentType) {
+  async function loadDocumentTemplate(documentType, student) {
     try {
       // Map document types to template function names
       const templateFunctionMap = {
@@ -152,8 +194,9 @@
         return null;
       }
 
-      // Call the template function to get the HTML
-      return templateFunction();
+      // Call the template function with student data
+      // Some templates need student data, others don't
+      return templateFunction(student);
     } catch (error) {
       console.error('Error loading template:', error);
       return null;

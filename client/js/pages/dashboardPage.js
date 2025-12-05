@@ -67,7 +67,7 @@
                 <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-2xl p-8 mb-8 text-white shadow-xl animate-fade-in-up">
                     <div class="flex items-start justify-between">
                         <div>
-                            <h1 class="text-4xl font-bold mb-3">SIPI Student Lifecycle Manager</h1>
+                            <h1 class="text-4xl font-bold mb-3 border-b-4 border-white pb-2 inline-block">SIPI Student Lifecycle Manager</h1>
                             <p class="text-blue-100 text-lg">Comprehensive student information management from admission to graduation and beyond</p>
                         </div>
                         <div class="w-16 h-16 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
@@ -91,19 +91,19 @@
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <button onclick="navigateTo('/add-student')" class="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-3 rounded-lg transition-all duration-200 hover-lift font-medium">
                             <i data-lucide="user-plus" class="w-5 h-5"></i>
-                            <span>Add Student</span>
+                            <span class="border-b-2 border-white">Add Student</span>
                         </button>
                         <button onclick="navigateTo('/students')" class="flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white px-6 py-3 rounded-lg transition-all duration-200 hover-lift font-medium">
                             <i data-lucide="users" class="w-5 h-5"></i>
-                            <span>View Students</span>
+                            <span class="border-b-2 border-white">View Students</span>
                         </button>
                         <button onclick="navigateTo('/departments')" class="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-6 py-3 rounded-lg transition-all duration-200 hover-lift font-medium">
                             <i data-lucide="building-2" class="w-5 h-5"></i>
-                            <span>Departments</span>
+                            <span class="border-b-2 border-white">Departments</span>
                         </button>
                         <button onclick="navigateTo('/documents')" class="flex items-center justify-center gap-2 bg-gradient-to-r from-pink-600 to-pink-700 hover:from-pink-700 hover:to-pink-800 text-white px-6 py-3 rounded-lg transition-all duration-200 hover-lift font-medium">
                             <i data-lucide="file-text" class="w-5 h-5"></i>
-                            <span>Documents</span>
+                            <span class="border-b-2 border-white">Documents</span>
                         </button>
                     </div>
                 </div>

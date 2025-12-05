@@ -465,7 +465,7 @@ a:hover::after {
 .border-gray-200 { border-color: var(--color-border-default) !important; }
 .border-gray-300 { border-color: var(--color-border-dark) !important; }
 .border-gray-400 { border-color: var(--color-border-dark) !important; }
-.border-white { border-color: var(--color-border-default) !important; }
+.border-white { border-color: #ffffff !important; }
 
 /* ========================================
    LIGHT MODE PLACEHOLDER TEXT
@@ -708,9 +708,14 @@ body[data-theme="light"] {
 }
 
 [data-theme="light"] p,
-[data-theme="light"] span,
 [data-theme="light"] div {
   color: var(--color-text-secondary) !important;
+}
+
+/* Preserve white text in buttons and colored backgrounds */
+[data-theme="light"] button span,
+[data-theme="light"] button i {
+  color: inherit !important;
 }
 
 [data-theme="light"] label {
