@@ -1,4 +1,70 @@
 /* Layout CSS - Structural layout patterns */
-/* This file will contain layout styles */
 
-/* Placeholder - to be implemented */
+/* Main App Layout */
+#app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+#sidebar {
+    flex-shrink: 0;
+}
+
+/* Desktop: Sidebar visible and fixed */
+@media (min-width: 1024px) {
+    #sidebar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        transform: translateX(0) !important;
+        width: 16rem;
+        height: 100vh;
+        z-index: 30;
+    }
+    
+    /* Add padding to main content to account for fixed sidebar */
+    #app > div:last-child {
+        margin-left: 16rem;
+    }
+}
+
+/* Mobile: Sidebar hidden by default */
+@media (max-width: 1023px) {
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 16rem;
+        height: 100vh;
+        z-index: 50;
+    }
+}
+
+/* Main content wrapper */
+#app > div:last-child {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* Navbar */
+#navbar {
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+
+/* Main Content */
+#main-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Footer */
+footer {
+    flex-shrink: 0;
+    margin-top: auto;
+}

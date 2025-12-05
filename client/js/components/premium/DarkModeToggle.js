@@ -32,13 +32,18 @@ class DarkModeToggle {
    */
   applyTheme(theme) {
     const html = document.documentElement;
+    const body = document.body;
     
     if (theme === 'dark') {
       html.classList.add('dark');
+      html.classList.remove('light');
       html.setAttribute('data-theme', 'dark');
+      body.setAttribute('data-theme', 'dark');
     } else {
       html.classList.remove('dark');
+      html.classList.add('light');
       html.setAttribute('data-theme', 'light');
+      body.setAttribute('data-theme', 'light');
     }
 
     // Save to localStorage

@@ -1,7 +1,7 @@
 // Application Management Pages
 
 // Public Application Form (No login required)
-function renderPublicApplicationForm() {
+async function renderPublicApplicationForm() {
     // Show sidebar and navbar
     document.getElementById('sidebar').style.display = 'flex';
     document.getElementById('navbar').style.display = 'block';
@@ -9,62 +9,65 @@ function renderPublicApplicationForm() {
     // Update navbar title
     renderNavbar('Submit Application');
     
+    // Fetch departments
+    const departments = await dataManager.getDepartments();
+    
     const mainContent = document.getElementById('main-content');
-    mainContent.className = 'bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4';
+    mainContent.className = 'space-y-6 py-8 px-4';
     mainContent.innerHTML = `
         <div class="max-w-4xl mx-auto">
-            <!-- Header -->
-            <div class="text-center mb-8">
-                <h1 class="text-4xl font-bold text-gray-900 mb-2">Student Application Form</h1>
-                <p class="text-gray-600">Submit your application for testimonial, certificate, stipend, or other documents</p>
+            <!-- Premium Header with Gradient -->
+            <div class="glass-panel p-8 rounded-2xl backdrop-blur-md border border-white/20 mb-8 entrance-animation">
+                <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">Student Application Form</h1>
+                <p class="text-gray-600 dark:text-gray-400 text-lg">Submit your application for testimonial, certificate, stipend, or other documents</p>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="glass-panel rounded-2xl backdrop-blur-md border border-white/20 p-8 entrance-animation">
                 <form id="public-application-form" class="space-y-8">
                     <!-- Student Information Section -->
                     <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3 pb-4 border-b-2 border-blue-100">
+                        <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6 flex items-center gap-3 pb-4 border-b-2 border-white/20">
                             <i data-lucide="user" class="w-6 h-6 text-blue-600"></i>
                             Student Information
                         </h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Full Name (Bangla) -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name (Bangla) <span class="text-red-500">*</span></label>
-                                <input type="text" id="fullNameBangla" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" placeholder="পূর্ণ নাম">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Full Name (Bangla) <span class="text-red-500">*</span></label>
+                                <input type="text" id="fullNameBangla" required class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400" placeholder="পূর্ণ নাম">
                             </div>
                             <!-- Full Name (English) -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name (English) <span class="text-red-500">*</span></label>
-                                <input type="text" id="fullNameEnglish" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" placeholder="Full Name">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Full Name (English) <span class="text-red-500">*</span></label>
+                                <input type="text" id="fullNameEnglish" required class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="Full Name">
                             </div>
                             <!-- Father's Name -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Father's Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="fatherName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Father's Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="fatherName" required class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
                             </div>
                             <!-- Mother's Name -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Mother's Name <span class="text-red-500">*</span></label>
-                                <input type="text" id="motherName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Mother's Name <span class="text-red-500">*</span></label>
+                                <input type="text" id="motherName" required class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
                             </div>
                             <!-- Department -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Department <span class="text-red-500">*</span></label>
-                                <select id="department" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Department <span class="text-red-500">*</span></label>
+                                <select id="department" required class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all dark:text-white">
                                     <option value="">Select Department</option>
-                                    ${dataManager.getDepartments().map(dept => `<option value="${dept.name}">${dept.name}</option>`).join('')}
+                                    ${departments.map(dept => `<option value="${dept.name}">${dept.name}</option>`).join('')}
                                 </select>
                             </div>
                             <!-- Session -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Session <span class="text-red-500">*</span></label>
-                                <input type="text" id="session" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" placeholder="e.g., 2024-2025">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Session <span class="text-red-500">*</span></label>
+                                <input type="text" id="session" required class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="e.g., 2024-2025">
                             </div>
                             <!-- Shift -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Shift <span class="text-red-500">*</span></label>
-                                <select id="shift" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Shift <span class="text-red-500">*</span></label>
+                                <select id="shift" required class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all dark:text-white">
                                     <option value="">Select Shift</option>
                                     <option value="Morning">Morning</option>
                                     <option value="Day">Day</option>
@@ -73,58 +76,54 @@ function renderPublicApplicationForm() {
                             </div>
                             <!-- Roll Number -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Roll Number <span class="text-red-500">*</span></label>
-                                <input type="text" id="rollNumber" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Roll Number <span class="text-red-500">*</span></label>
+                                <input type="text" id="rollNumber" required class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
                             </div>
                             <!-- Registration Number -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Registration Number <span class="text-red-500">*</span></label>
-                                <input type="text" id="registrationNumber" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Registration Number <span class="text-red-500">*</span></label>
+                                <input type="text" id="registrationNumber" required class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
                             </div>
                             <!-- Email -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" placeholder="your.email@example.com">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="your.email@example.com">
                             </div>
                         </div>
                     </div>
 
                     <!-- Application Details Section -->
                     <div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3 pb-4 border-b-2 border-blue-100">
+                        <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6 flex items-center gap-3 pb-4 border-b-2 border-white/20">
                             <i data-lucide="file-text" class="w-6 h-6 text-blue-600"></i>
                             Application Details
                         </h3>
                         <div class="space-y-6">
-                            <!-- Application Type -->
+                            <!-- Required Documents Selection -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Application Type <span class="text-red-500">*</span></label>
-                                <select id="applicationType" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition bg-white">
-                                    <option value="">Select Application Type</option>
-                                    <option value="Testimonial">Testimonial</option>
-                                    <option value="Certificate">Certificate</option>
-                                    <option value="Stipend">Stipend</option>
-                                    <option value="Character Certificate">Character Certificate</option>
-                                    <option value="Transcript">Transcript</option>
-                                    <option value="Other Documents">Other Documents</option>
-                                </select>
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">Select Required Documents <span class="text-red-500">*</span></label>
+                                <div id="documents-checkboxes" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Checkboxes will be populated on page load -->
+                                </div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Select at least one document</p>
                             </div>
+
                             <!-- Subject -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Subject <span class="text-red-500">*</span></label>
-                                <input type="text" id="subject" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" placeholder="Brief subject of your application">
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Subject <span class="text-red-500">*</span></label>
+                                <input type="text" id="subject" required class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="Brief subject of your application">
                             </div>
                             <!-- Message/Details -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Message/Details <span class="text-red-500">*</span></label>
-                                <textarea id="message" required rows="8" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none" placeholder="Provide detailed information about your application..."></textarea>
+                                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Message/Details <span class="text-red-500">*</span></label>
+                                <textarea id="message" required rows="8" class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none" placeholder="Provide detailed information about your application..."></textarea>
                             </div>
                         </div>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="flex justify-end pt-6">
-                        <button type="submit" class="px-8 py-3 text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-lg transition-colors flex items-center gap-2 font-semibold shadow-md hover:shadow-lg">
+                        <button type="submit" class="px-8 py-3 text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 active:from-blue-800 active:to-purple-800 rounded-xl transition-all duration-300 flex items-center gap-2 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105">
                             <i data-lucide="send" class="w-5 h-5"></i>
                             Submit Application
                         </button>
@@ -133,20 +132,59 @@ function renderPublicApplicationForm() {
             </div>
 
             <!-- Footer -->
-            <div class="text-center mt-8 text-gray-600">
-                <p>Already have an account? <a href="#/login" class="text-blue-600 hover:text-blue-700 font-medium">Login here</a></p>
+            <div class="text-center mt-8 text-gray-600 dark:text-gray-400">
+                <p>Already have an account? <a href="#/login" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">Login here</a></p>
             </div>
         </div>
     `;
     
     lucide.createIcons();
     
+    // Initialize document checkboxes
+    initializeDocumentCheckboxes();
+    
     // Handle form submission
     document.getElementById('public-application-form').addEventListener('submit', handlePublicApplicationSubmit);
 }
 
-function handlePublicApplicationSubmit(e) {
+function initializeDocumentCheckboxes() {
+    const checkboxesContainer = document.getElementById('documents-checkboxes');
+    
+    // Get all available document types
+    const allDocuments = getAllDocumentTypes().map(docType => ({
+        type: docType,
+        metadata: getDocumentMetadata(docType)
+    })).filter(doc => doc.metadata !== null);
+    
+    // Generate checkboxes for all documents with premium styling
+    checkboxesContainer.innerHTML = allDocuments.map(doc => `
+        <label class="flex items-center gap-3 p-4 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl hover:border-white/40 hover:bg-white/70 dark:hover:bg-gray-800/70 cursor-pointer transition-all duration-300 transform hover:scale-105">
+            <input type="checkbox" name="selectedDocuments" value="${doc.type}" class="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500">
+            <div class="flex-1">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="${doc.metadata.icon}" class="w-4 h-4 text-${doc.metadata.color}-600"></i>
+                    <span class="font-medium text-gray-900 dark:text-white">${doc.metadata.name}</span>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">${doc.metadata.description}</p>
+            </div>
+        </label>
+    `).join('');
+    
+    lucide.createIcons();
+}
+
+async function handlePublicApplicationSubmit(e) {
     e.preventDefault();
+    
+    // Get selected documents
+    const selectedDocuments = Array.from(document.querySelectorAll('input[name="selectedDocuments"]:checked'))
+        .map(checkbox => checkbox.value);
+    
+    // Validate that at least one document is selected
+    if (selectedDocuments.length === 0) {
+        showToast('Please select at least one document', 'error');
+        return;
+    }
     
     const applicationData = {
         fullNameBangla: document.getElementById('fullNameBangla').value,
@@ -159,12 +197,13 @@ function handlePublicApplicationSubmit(e) {
         rollNumber: document.getElementById('rollNumber').value,
         registrationNumber: document.getElementById('registrationNumber').value,
         email: document.getElementById('email').value || '',
-        applicationType: document.getElementById('applicationType').value,
+        applicationType: 'Other',
         subject: document.getElementById('subject').value,
-        message: document.getElementById('message').value
+        message: document.getElementById('message').value,
+        selectedDocuments: selectedDocuments
     };
     
-    const application = applicationManager.submitApplication(applicationData);
+    const application = await applicationManager.submitApplication(applicationData);
     
     if (application) {
         // Show success message
@@ -176,7 +215,9 @@ function handlePublicApplicationSubmit(e) {
                         <i data-lucide="check-circle" class="w-12 h-12 text-green-600"></i>
                     </div>
                     <h2 class="text-3xl font-bold text-gray-900 mb-4">Application Submitted Successfully!</h2>
-                    <p class="text-gray-600 mb-2">Your application for <strong>${applicationData.applicationType}</strong> has been submitted.</p>
+                    <p class="text-gray-600 mb-2">Your application for <strong>${selectedDocuments.length} document(s)</strong> has been submitted.</p>
+                    <p class="text-gray-600 mb-2">Selected Documents:</p>
+                    <p class="text-sm text-gray-700 mb-4">${selectedDocuments.map(doc => getDocumentMetadata(doc)?.name || doc).join(', ')}</p>
                     <p class="text-gray-600 mb-2">Application ID:</p>
                     <p class="text-2xl font-mono font-bold text-blue-600 mb-6">${application.id}</p>
                     <p class="text-gray-600 mb-8">Please save this ID for future reference. You will be notified once your application is processed.</p>
@@ -201,3 +242,4 @@ function handlePublicApplicationSubmit(e) {
 // Export functions
 window.renderPublicApplicationForm = renderPublicApplicationForm;
 window.handlePublicApplicationSubmit = handlePublicApplicationSubmit;
+window.initializeDocumentCheckboxes = initializeDocumentCheckboxes;

@@ -10,10 +10,12 @@ class CareerPositionSerializer(serializers.Serializer):
     """
     Serializer for career position entries
     """
-    company = serializers.CharField(max_length=255)
-    position = serializers.CharField(max_length=255)
+    positionType = serializers.CharField(max_length=50)
+    organizationName = serializers.CharField(max_length=255)
+    positionTitle = serializers.CharField(max_length=255)
     startDate = serializers.DateField()
     endDate = serializers.DateField(required=False, allow_null=True)
+    isCurrent = serializers.BooleanField(required=False, default=False)
     description = serializers.CharField(required=False, allow_blank=True)
 
 
@@ -38,7 +40,6 @@ class AlumniSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alumni
         fields = [
-            'id',
             'student',
             'alumniType',
             'transitionDate',
@@ -50,7 +51,7 @@ class AlumniSerializer(serializers.ModelSerializer):
             'createdAt',
             'updatedAt',
         ]
-        read_only_fields = ['id', 'transitionDate', 'createdAt', 'updatedAt']
+        read_only_fields = ['transitionDate', 'createdAt', 'updatedAt']
 
 
 class AlumniCreateSerializer(serializers.ModelSerializer):
@@ -97,10 +98,12 @@ class AddCareerPositionSerializer(serializers.Serializer):
     """
     Serializer for adding career positions
     """
-    company = serializers.CharField(max_length=255)
-    position = serializers.CharField(max_length=255)
+    positionType = serializers.CharField(max_length=50)
+    organizationName = serializers.CharField(max_length=255)
+    positionTitle = serializers.CharField(max_length=255)
     startDate = serializers.DateField()
     endDate = serializers.DateField(required=False, allow_null=True)
+    isCurrent = serializers.BooleanField(required=False, default=False)
     description = serializers.CharField(required=False, allow_blank=True, default='')
 
 

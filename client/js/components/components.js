@@ -64,10 +64,10 @@ function renderSidebar() {
                                         <li>
                                             <a href="#${item.path}" 
                                                data-nav-link
-                                               class="flex items-center gap-3 px-4 py-3 text-gray-300 rounded-lg hover:bg-green-500/20 transition-all duration-200 ease-smooth group relative border-l-2 border-green-500/50 hover:border-green-500"
+                                               class="flex items-center gap-3 px-4 py-3 text-gray-300 rounded-lg hover:bg-green-500/20 transition-all duration-200 ease-in-out group relative border-l-2 border-green-500/50 hover:border-green-500 min-h-[44px]"
                                                title="${item.label}">
-                                                <i data-lucide="${item.icon}" class="w-5 h-5 text-green-400 group-hover:text-green-300 transition-colors"></i>
-                                                <span class="text-sm font-medium group-hover:text-white transition-colors">${item.label}</span>
+                                                <i data-lucide="${item.icon}" class="w-5 h-5 flex-shrink-0 text-green-400 group-hover:text-green-300 transition-colors"></i>
+                                                <span class="flex-1 text-sm font-medium group-hover:text-white transition-colors">${item.label}</span>
                                                 <span class="ml-auto text-xs bg-green-500/30 text-green-300 px-2 py-1 rounded-full">Quick</span>
                                                 <!-- Tooltip -->
                                                 <div class="absolute left-full ml-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
@@ -81,10 +81,10 @@ function renderSidebar() {
                                         <li>
                                             <a href="#${item.path}" 
                                                data-nav-link
-                                               class="flex items-center gap-3 px-4 py-3 text-gray-300 rounded-lg hover:bg-white/10 transition-all duration-200 ease-smooth group relative"
+                                               class="flex items-center gap-3 px-4 py-3 text-gray-300 rounded-lg hover:bg-white/10 transition-all duration-200 ease-in-out group relative min-h-[44px]"
                                                title="${item.label}">
-                                                <i data-lucide="${item.icon}" class="w-5 h-5 text-gray-400 group-hover:text-blue-400 transition-colors"></i>
-                                                <span class="text-sm font-medium group-hover:text-white transition-colors">${item.label}</span>
+                                                <i data-lucide="${item.icon}" class="w-5 h-5 flex-shrink-0 text-gray-400 group-hover:text-blue-400 transition-colors"></i>
+                                                <span class="flex-1 text-sm font-medium group-hover:text-white transition-colors">${item.label}</span>
                                                 <!-- Tooltip -->
                                                 <div class="absolute left-full ml-2 px-3 py-1 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
                                                     ${item.label}
@@ -126,7 +126,7 @@ function renderNavbar(pageTitle = 'Dashboard') {
             <div class="flex items-center justify-between px-6 py-4">
                 <!-- Left: Menu toggle and title -->
                 <div class="flex items-center gap-4">
-                    <button onclick="toggleSidebar()" class="lg:hidden text-gray-400 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg">
+                    <button onclick="toggleSidebar()" class="lg:hidden text-gray-400 hover:text-white transition-colors p-2 hover:bg-white/10 rounded-lg min-h-[44px] min-w-[44px] flex items-center justify-center">
                         <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
                     <h1 class="text-2xl font-bold text-white">${pageTitle}</h1>
@@ -207,7 +207,19 @@ function renderNavbar(pageTitle = 'Dashboard') {
 // Toggle sidebar on mobile
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle('-translate-x-full');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    
+    if (window.innerWidth < 1024) {
+        sidebar.classList.toggle('-translate-x-full');
+        backdrop.classList.toggle('active');
+        
+        // Prevent body scroll when sidebar is open
+        if (sidebar.classList.contains('-translate-x-full')) {
+            document.body.style.overflow = 'auto';
+        } else {
+            document.body.style.overflow = 'hidden';
+        }
+    }
 }
 
 // Toggle user menu
@@ -221,6 +233,38 @@ document.addEventListener('click', (e) => {
     const menu = document.getElementById('user-menu');
     if (menu && !e.target.closest('[onclick="toggleUserMenu()"]') && !menu.contains(e.target)) {
         menu.classList.add('hidden');
+    }
+});
+
+// Close sidebar when clicking backdrop
+document.addEventListener('DOMContentLoaded', () => {
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (backdrop) {
+        backdrop.addEventListener('click', () => {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.add('-translate-x-full');
+            backdrop.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    }
+});
+
+// Close sidebar after navigation on mobile
+function closeSidebarAfterNav() {
+    if (window.innerWidth < 1024) {
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        sidebar.classList.add('-translate-x-full');
+        backdrop.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Hook into navigation links
+document.addEventListener('click', (e) => {
+    const navLink = e.target.closest('[data-nav-link]');
+    if (navLink) {
+        closeSidebarAfterNav();
     }
 });
 

@@ -9,22 +9,36 @@ async function renderDocuments() {
     
     const mainContent = document.getElementById('main-content');
     
-    // Show loading skeleton
+    // Show loading skeleton with premium styling
     mainContent.innerHTML = `
-        <div class="bg-white rounded-xl shadow-sm p-6">
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-                <div class="h-8 bg-gray-200 rounded w-48 animate-pulse"></div>
-                <div class="h-10 bg-gray-200 rounded w-40 animate-pulse"></div>
+        <div class="space-y-6">
+            <!-- Header Section -->
+            <div class="glass-panel p-8 rounded-2xl">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                        <div class="h-10 bg-gradient-to-r from-gray-200 to-gray-300 rounded-lg w-64 animate-pulse mb-2"></div>
+                        <div class="h-4 bg-gray-200 rounded w-48 animate-pulse"></div>
+                    </div>
+                    <div class="h-12 bg-gradient-to-r from-blue-400 to-purple-400 rounded-xl w-48 animate-pulse"></div>
+                </div>
             </div>
-            <div class="mb-6">
-                <div class="h-10 bg-gray-200 rounded w-48 animate-pulse"></div>
+
+            <!-- Filter Section -->
+            <div class="glass-panel p-6 rounded-2xl">
+                <div class="h-10 bg-gray-200 rounded-lg w-48 animate-pulse"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+            <!-- Documents Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 ${[1, 2, 3, 4, 5, 6].map(() => `
-                    <div class="bg-gray-100 rounded-lg p-4 animate-pulse">
-                        <div class="h-12 bg-gray-200 rounded mb-3"></div>
-                        <div class="h-4 bg-gray-200 rounded mb-2"></div>
-                        <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+                    <div class="premium-card rounded-2xl p-6 animate-pulse">
+                        <div class="h-16 bg-gradient-to-br from-gray-200 to-gray-300 rounded-xl mb-4"></div>
+                        <div class="h-4 bg-gray-200 rounded mb-3"></div>
+                        <div class="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+                        <div class="flex gap-2">
+                            <div class="flex-1 h-10 bg-gray-200 rounded-lg"></div>
+                            <div class="flex-1 h-10 bg-gray-200 rounded-lg"></div>
+                        </div>
                     </div>
                 `).join('')}
             </div>
@@ -36,21 +50,29 @@ async function renderDocuments() {
         const response = await backendAPI.documents.getAll();
         const documents = response.results || response || [];
         
-        // Render documents page
+        // Render documents page with premium styling
         mainContent.innerHTML = `
-            <div class="bg-white rounded-xl shadow-sm p-6">
-                <!-- Header -->
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-                    <h2 class="text-2xl font-bold text-gray-900">All Documents</h2>
-                    <button onclick="uploadDocumentGeneral()" class="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
-                        <i data-lucide="upload" class="w-5 h-5"></i>
-                        <span>Upload Document</span>
-                    </button>
+            <div class="space-y-6">
+                <!-- Header Section with Gradient -->
+                <div class="glass-panel p-8 rounded-2xl backdrop-blur-md border border-white/20">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div>
+                            <h1 class="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+                                Documents
+                            </h1>
+                            <p class="text-gray-600 dark:text-gray-400">Manage and organize your documents</p>
+                        </div>
+                        <button onclick="uploadDocumentGeneral()" class="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg font-medium">
+                            <i data-lucide="upload" class="w-5 h-5"></i>
+                            <span>Upload Document</span>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Filter -->
-                <div class="mb-6">
-                    <select id="filter-category" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                <!-- Filter Section -->
+                <div class="glass-panel p-6 rounded-2xl backdrop-blur-md border border-white/20">
+                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Filter by Category</label>
+                    <select id="filter-category" class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 font-medium">
                         <option value="">All Categories</option>
                         <option value="NID">NID</option>
                         <option value="Marksheet">Marksheet</option>
@@ -61,7 +83,7 @@ async function renderDocuments() {
                 </div>
 
                 <!-- Documents Grid -->
-                <div id="documents-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div id="documents-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     ${renderDocumentCards(documents)}
                 </div>
             </div>
@@ -75,15 +97,13 @@ async function renderDocuments() {
     } catch (error) {
         console.error('Failed to load documents:', error);
         mainContent.innerHTML = `
-            <div class="bg-white rounded-xl shadow-sm p-6">
-                <div class="text-center py-12">
-                    <i data-lucide="alert-circle" class="w-16 h-16 text-red-500 mx-auto mb-4"></i>
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Failed to Load Documents</h3>
-                    <p class="text-gray-600 mb-4">${error.message || 'Unable to fetch documents'}</p>
-                    <button onclick="renderDocuments()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                        Retry
-                    </button>
-                </div>
+            <div class="glass-panel p-12 rounded-2xl backdrop-blur-md border border-white/20 text-center">
+                <i data-lucide="alert-circle" class="w-20 h-20 text-red-500 mx-auto mb-4"></i>
+                <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Failed to Load Documents</h3>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">${error.message || 'Unable to fetch documents'}</p>
+                <button onclick="renderDocuments()" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium">
+                    Retry
+                </button>
             </div>
         `;
         lucide.createIcons();
@@ -93,12 +113,14 @@ async function renderDocuments() {
 function renderDocumentCards(documents) {
     if (!documents || documents.length === 0) {
         return `
-            <div class="col-span-full text-center py-12">
-                <i data-lucide="file-text" class="w-16 h-16 mx-auto mb-4 text-gray-400"></i>
-                <p class="text-gray-500 mb-2">No documents found</p>
-                <button onclick="uploadDocumentGeneral()" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                    Upload your first document
-                </button>
+            <div class="col-span-full">
+                <div class="glass-panel p-16 rounded-2xl backdrop-blur-md border border-white/20 text-center">
+                    <i data-lucide="file-text" class="w-20 h-20 mx-auto mb-4 text-gray-400"></i>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4 text-lg">No documents found</p>
+                    <button onclick="uploadDocumentGeneral()" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium">
+                        Upload your first document
+                    </button>
+                </div>
             </div>
         `;
     }
@@ -112,31 +134,57 @@ function renderDocumentCards(documents) {
         const fileUrl = doc.file || doc.fileUrl || '#';
         const studentName = doc.student_name || (doc.student ? doc.student.full_name_english : 'Unknown Student');
         
+        // Get category color
+        const categoryColors = {
+            'NID': 'from-blue-500 to-cyan-500',
+            'Marksheet': 'from-green-500 to-emerald-500',
+            'Certificate': 'from-purple-500 to-pink-500',
+            'Attendance Sheet': 'from-orange-500 to-red-500',
+            'Other': 'from-gray-500 to-slate-500'
+        };
+        const categoryGradient = categoryColors[category] || categoryColors['Other'];
+        
         return `
-            <div class="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                <div class="flex items-start justify-between mb-3">
-                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <i data-lucide="file-text" class="w-6 h-6 text-blue-600"></i>
+            <div class="premium-card group rounded-2xl p-6 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl entrance-animation">
+                <!-- Header with Icon and Delete -->
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-16 h-16 bg-gradient-to-br ${categoryGradient} rounded-xl flex items-center justify-center shadow-lg">
+                        <i data-lucide="file-text" class="w-8 h-8 text-white"></i>
                     </div>
-                    <button onclick="deleteDocumentConfirm('${doc.id}')" class="text-red-600 hover:text-red-700">
-                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    <button onclick="deleteDocumentConfirm('${doc.id}')" class="p-2 rounded-lg bg-red-500/10 text-red-600 hover:bg-red-500/20 transition-all duration-300 opacity-0 group-hover:opacity-100">
+                        <i data-lucide="trash-2" class="w-5 h-5"></i>
                     </button>
                 </div>
-                <h3 class="font-medium text-gray-900 mb-1 truncate" title="${fileName}">${fileName}</h3>
-                <p class="text-sm text-gray-500 mb-2">${studentName}</p>
-                <div class="flex items-center justify-between text-xs text-gray-500 mb-3">
-                    <span class="badge badge-info">${category}</span>
-                    <span>${formatFileSize(fileSize)}</span>
+                
+                <!-- File Name -->
+                <h3 class="font-bold text-gray-900 dark:text-white mb-1 truncate text-lg" title="${fileName}">${fileName}</h3>
+                
+                <!-- Student Name -->
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">${studentName}</p>
+                
+                <!-- Category Badge and Size -->
+                <div class="flex items-center justify-between mb-4">
+                    <span class="inline-block px-3 py-1 bg-gradient-to-r ${categoryGradient} text-white text-xs font-semibold rounded-full">
+                        ${category}
+                    </span>
+                    <span class="text-xs text-gray-500 dark:text-gray-400 font-medium">${formatFileSize(fileSize)}</span>
                 </div>
-                <div class="text-xs text-gray-400 mb-3">${formatDate(uploadDate, 'short')}</div>
-                <div class="flex gap-2">
-                    <a href="${fileUrl}" target="_blank" class="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs rounded-lg transition-colors">
-                        <i data-lucide="eye" class="w-3 h-3"></i>
-                        View
+                
+                <!-- Upload Date -->
+                <div class="text-xs text-gray-500 dark:text-gray-400 mb-4 font-medium">
+                    <i data-lucide="calendar" class="w-3 h-3 inline mr-1"></i>
+                    ${formatDate(uploadDate, 'short')}
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex gap-3">
+                    <a href="${fileUrl}" target="_blank" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                        <span>View</span>
                     </a>
-                    <a href="${fileUrl}" download="${fileName}" class="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-xs rounded-lg transition-colors">
-                        <i data-lucide="download" class="w-3 h-3"></i>
-                        Download
+                    <a href="${fileUrl}" download="${fileName}" class="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white text-sm font-semibold rounded-lg transition-all duration-300 transform hover:scale-105">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        <span>Download</span>
                     </a>
                 </div>
             </div>
@@ -147,11 +195,13 @@ function renderDocumentCards(documents) {
 async function updateDocumentsList() {
     const grid = document.getElementById('documents-grid');
     
-    // Show loading
+    // Show loading with premium styling
     grid.innerHTML = `
-        <div class="col-span-full text-center py-8">
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p class="text-gray-500 mt-4">Loading documents...</p>
+        <div class="col-span-full">
+            <div class="glass-panel p-12 rounded-2xl backdrop-blur-md border border-white/20 text-center">
+                <div class="animate-spin rounded-full h-16 w-16 border-4 border-blue-200 border-t-blue-600 mx-auto mb-4"></div>
+                <p class="text-gray-600 dark:text-gray-400 text-lg font-medium">Loading documents...</p>
+            </div>
         </div>
     `;
     
@@ -167,12 +217,14 @@ async function updateDocumentsList() {
     } catch (error) {
         console.error('Failed to load documents:', error);
         grid.innerHTML = `
-            <div class="col-span-full text-center py-8">
-                <i data-lucide="alert-circle" class="w-12 h-12 text-red-500 mx-auto mb-4"></i>
-                <p class="text-gray-600 mb-4">Failed to load documents</p>
-                <button onclick="updateDocumentsList()" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                    Retry
-                </button>
+            <div class="col-span-full">
+                <div class="glass-panel p-12 rounded-2xl backdrop-blur-md border border-white/20 text-center">
+                    <i data-lucide="alert-circle" class="w-16 h-16 text-red-500 mx-auto mb-4"></i>
+                    <p class="text-gray-600 dark:text-gray-400 mb-6 text-lg">Failed to load documents</p>
+                    <button onclick="updateDocumentsList()" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-medium">
+                        Retry
+                    </button>
+                </div>
             </div>
         `;
         lucide.createIcons();

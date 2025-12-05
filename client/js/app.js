@@ -77,6 +77,8 @@
         router.register('/apply', renderPublicApplicationForm); // From applications.js
         router.register('/applications', renderApplications); // From applications-admin.js
         router.register('/application/:id', renderApplicationDetails); // From applications-admin.js
+        router.register('/application-documents/:applicationId', renderApplicationDocumentSelection); // From applicationDocumentSelectionPage.js
+        router.register('/application-document-viewer/:applicationId/:documentType', renderApplicationDocumentViewer); // From applicationDocumentViewerPage.js
         
         // Admin & Auth
         router.register('/login', LoginPage.render);

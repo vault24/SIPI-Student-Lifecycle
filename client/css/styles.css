@@ -8,6 +8,7 @@
 @import url('design-system/glassmorphism.css');
 @import url('design-system/animations.css');
 @import url('design-system/dark-mode.css');
+@import url('design-system/light-mode.css');
 
 * {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;

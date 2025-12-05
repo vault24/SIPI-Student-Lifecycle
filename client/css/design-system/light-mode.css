@@ -1,0 +1,746 @@
+/* Light Mode - Premium UI Redesign */
+/* Light theme with glassmorphism, beautiful colors, and premium styling */
+
+/* ========================================
+   LIGHT MODE ROOT VARIABLES
+   ======================================== */
+
+:root {
+  /* Background Colors - Premium Light */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8fafc;
+  --color-bg-tertiary: #f1f5f9;
+  --color-bg-accent: #eff6ff;
+
+  /* Text Colors - Premium Dark */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #64748b;
+  --color-text-inverse: #ffffff;
+
+  /* Border Colors - Subtle */
+  --color-border-light: #f1f5f9;
+  --color-border-default: #e2e8f0;
+  --color-border-dark: #cbd5e1;
+
+  /* Glassmorphism - Light Mode */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-bg-strong: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
+
+  /* Neutral Colors */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  /* Semantic Colors - Light Mode */
+  --color-success-light: #d1fae5;
+  --color-success-dark: #065f46;
+  --color-warning-light: #fef3c7;
+  --color-warning-dark: #92400e;
+  --color-error-light: #fee2e2;
+  --color-error-dark: #991b1b;
+  --color-info-light: #dbeafe;
+  --color-info-dark: #1e40af;
+
+  /* Shadows - Subtle and Premium */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px -1px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+
+  /* Colored Shadows */
+  --shadow-primary: 0 10px 25px -5px rgba(99, 102, 241, 0.2);
+  --shadow-success: 0 10px 25px -5px rgba(16, 185, 129, 0.2);
+  --shadow-warning: 0 10px 25px -5px rgba(245, 158, 11, 0.2);
+  --shadow-error: 0 10px 25px -5px rgba(239, 68, 68, 0.2);
+}
+
+/* ========================================
+   LIGHT MODE BODY & BASE
+   ======================================== */
+
+body {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 25%, #f5f3ff 50%, #fef3f2 75%, #f9fafb 100%);
+  background-attachment: fixed;
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   LIGHT MODE COMPONENT ADJUSTMENTS
+   ======================================== */
+
+/* Cards - Premium Glassmorphism with Colorful Accents */
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+  border: 1px solid var(--color-border-default);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(240, 249, 255, 0.98) 100%);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+  border-color: var(--color-primary-300);
+  transform: translateY(-4px);
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+/* Sidebar - Premium Glass Effect with Colorful Accent */
+.glass-sidebar {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+  border-right: 2px solid var(--color-border-default);
+  box-shadow: 4px 0 20px rgba(99, 102, 241, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.glass-sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+/* Navbar - Premium Glass Effect with Colorful Accent */
+.glass-navbar {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 249, 255, 0.95) 100%);
+  border-bottom: 1px solid var(--color-border-default);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.glass-navbar-scrolled {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 249, 255, 0.98) 100%);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.12);
+}
+
+/* Buttons - Premium Styling with Colorful Effects */
+.glass-button {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1.5px solid var(--color-border-default);
+  color: var(--color-text-primary);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.glass-button:hover {
+  background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+  border-color: var(--color-primary-400);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+  transform: translateY(-2px);
+}
+
+.glass-button:hover::before {
+  left: 100%;
+}
+
+.glass-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
+}
+
+/* Inputs - Premium Styling with Colorful Focus */
+.glass-input {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.9) 100%);
+  border: 1.5px solid var(--color-border-default);
+  color: var(--color-text-primary);
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-input:focus {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(240, 249, 255, 0.95) 100%);
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 4px 15px rgba(99, 102, 241, 0.1);
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* Modals - Premium Glass Effect with Colorful Border */
+.glass-modal {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%);
+  border: 1px solid var(--color-border-default);
+  box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+.glass-modal-backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+}
+
+/* ========================================
+   LIGHT MODE TEXT ADJUSTMENTS
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-primary);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+h5 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+h6 {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+/* ========================================
+   LIGHT MODE TEXT COLOR UTILITIES
+   ======================================== */
+
+.text-gray-50 { color: var(--color-gray-50) !important; }
+.text-gray-100 { color: var(--color-gray-100) !important; }
+.text-gray-200 { color: var(--color-gray-200) !important; }
+.text-gray-300 { color: var(--color-gray-300) !important; }
+.text-gray-400 { color: var(--color-gray-400) !important; }
+.text-gray-500 { color: var(--color-gray-500) !important; }
+.text-gray-600 { color: var(--color-gray-600) !important; }
+.text-gray-700 { color: var(--color-gray-700) !important; }
+.text-gray-800 { color: var(--color-gray-800) !important; }
+.text-gray-900 { color: var(--color-gray-900) !important; }
+
+.text-success { color: var(--color-success-dark) !important; }
+.text-warning { color: var(--color-warning-dark) !important; }
+.text-error { color: var(--color-error-dark) !important; }
+.text-info { color: var(--color-info-dark) !important; }
+
+/* ========================================
+   LIGHT MODE FORM ELEMENTS
+   ======================================== */
+
+label {
+  color: var(--color-text-primary) !important;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="search"],
+textarea,
+select {
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-bg-primary) !important;
+  border: 1px solid var(--color-border-default) !important;
+  box-shadow: var(--shadow-xs) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+input[type="password"]::placeholder,
+input[type="number"]::placeholder,
+input[type="date"]::placeholder,
+input[type="time"]::placeholder,
+input[type="search"]::placeholder,
+textarea::placeholder {
+  color: var(--color-text-tertiary) !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus {
+  background-color: var(--color-bg-secondary) !important;
+  border-color: var(--color-primary-500) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1), var(--shadow-md) !important;
+  outline: none !important;
+}
+
+/* ========================================
+   LIGHT MODE TABLE ELEMENTS
+   ======================================== */
+
+table {
+  color: var(--color-text-primary);
+}
+
+thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+thead th {
+  color: white !important;
+  font-weight: 700;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2) !important;
+  padding: 14px 16px !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--color-border-light) !important;
+  transition: all 0.2s ease !important;
+}
+
+tbody tr:hover {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.05) 0%, rgba(240, 249, 255, 0.5) 100%) !important;
+  box-shadow: inset 0 0 0 1px var(--color-primary-200) !important;
+}
+
+tbody td {
+  color: var(--color-text-secondary) !important;
+  padding: 12px 16px !important;
+}
+
+/* ========================================
+   LIGHT MODE BACKGROUND UTILITIES
+   ======================================== */
+
+.bg-white {
+  background-color: var(--color-bg-primary) !important;
+}
+
+.bg-gray-50 {
+  background-color: var(--color-bg-secondary) !important;
+}
+
+.bg-gray-100 {
+  background-color: var(--color-bg-tertiary) !important;
+}
+
+.bg-gray-200 {
+  background-color: var(--color-border-default) !important;
+}
+
+.bg-gray-300 {
+  background-color: var(--color-border-dark) !important;
+}
+
+/* ========================================
+   LIGHT MODE BUTTON STYLING
+   ======================================== */
+
+button {
+  color: var(--color-text-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:not([class*="bg-"]):not([class*="gradient"]) {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+button:not([class*="bg-"]):not([class*="gradient"]):hover {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  border-color: var(--color-primary-300);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   LIGHT MODE LINK STYLING - COLORFUL
+   ======================================== */
+
+a {
+  color: var(--color-primary-600) !important;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+  font-weight: 500;
+}
+
+a:hover {
+  color: var(--color-primary-700) !important;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1px;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* ========================================
+   LIGHT MODE BORDER UTILITIES
+   ======================================== */
+
+.border-gray-50 { border-color: var(--color-border-light) !important; }
+.border-gray-100 { border-color: var(--color-border-light) !important; }
+.border-gray-200 { border-color: var(--color-border-default) !important; }
+.border-gray-300 { border-color: var(--color-border-dark) !important; }
+.border-gray-400 { border-color: var(--color-border-dark) !important; }
+.border-white { border-color: var(--color-border-default) !important; }
+
+/* ========================================
+   LIGHT MODE PLACEHOLDER TEXT
+   ======================================== */
+
+::placeholder {
+  color: var(--color-text-tertiary) !important;
+}
+
+/* ========================================
+   LIGHT MODE SHADOW UTILITIES
+   ======================================== */
+
+.shadow-sm { box-shadow: var(--shadow-sm) !important; }
+.shadow-md { box-shadow: var(--shadow-md) !important; }
+.shadow-lg { box-shadow: var(--shadow-lg) !important; }
+.shadow-xl { box-shadow: var(--shadow-xl) !important; }
+.shadow-2xl { box-shadow: var(--shadow-2xl) !important; }
+
+/* ========================================
+   LIGHT MODE BADGE STYLING - COLORFUL
+   ======================================== */
+
+.badge-success {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: #065f46;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.badge-warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #92400e;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+}
+
+.badge-error {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #991b1b;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.badge-info {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* ========================================
+   LIGHT MODE SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+/* ========================================
+   LIGHT MODE SKELETON LOADER
+   ======================================== */
+
+.skeleton {
+  background: linear-gradient(to right, #f0f0f0 4%, #e0e0e0 25%, #f0f0f0 36%);
+  background-size: 1000px 100%;
+}
+
+/* ========================================
+   LIGHT MODE TRANSITIONS
+   ======================================== */
+
+body {
+  transition: background-color var(--duration-normal) var(--easing-smooth),
+              color var(--duration-normal) var(--easing-smooth);
+}
+
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--easing-smooth);
+}
+
+.no-transition * {
+  transition: none !important;
+}
+
+/* ========================================
+   LIGHT MODE UTILITY CLASSES
+   ======================================== */
+
+.text-center,
+.text-left,
+.text-right {
+  color: inherit;
+}
+
+/* ========================================
+   LIGHT MODE DEFINITION LISTS
+   ======================================== */
+
+dt {
+  color: var(--color-text-primary) !important;
+  font-weight: 600;
+}
+
+dd {
+  color: var(--color-text-secondary) !important;
+}
+
+/* ========================================
+   LIGHT MODE LIST ITEMS
+   ======================================== */
+
+li {
+  color: var(--color-text-secondary) !important;
+}
+
+/* ========================================
+   LIGHT MODE CODE BLOCKS
+   ======================================== */
+
+code,
+pre {
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-bg-secondary) !important;
+  border: 1px solid var(--color-border-default) !important;
+}
+
+/* ========================================
+   LIGHT MODE DISABLED ELEMENTS
+   ======================================== */
+
+:disabled {
+  color: var(--color-text-tertiary) !important;
+  background-color: var(--color-bg-secondary) !important;
+  opacity: 0.6;
+}
+
+/* ========================================
+   LIGHT MODE READ-ONLY ELEMENTS
+   ======================================== */
+
+:read-only {
+  background-color: var(--color-bg-secondary) !important;
+  color: var(--color-text-secondary) !important;
+}
+
+/* ========================================
+   LIGHT MODE PREMIUM EFFECTS
+   ======================================== */
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hover Lift Effect */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Smooth Fade In */
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================
+   LIGHT MODE FOCUS STATES
+   ======================================== */
+
+*:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* ========================================
+   LIGHT MODE SELECTION
+   ======================================== */
+
+::selection {
+  background-color: var(--color-primary-500);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--color-primary-500);
+  color: white;
+}
+
+/* ========================================
+   LIGHT MODE EXPLICIT OVERRIDES
+   ======================================== */
+
+/* When data-theme is light, ensure light mode styles apply */
+[data-theme="light"],
+[data-theme="light"] body,
+body[data-theme="light"] {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
+  background-attachment: fixed;
+  color: var(--color-text-primary);
+}
+
+/* Ensure light mode text colors override any dark mode styles */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: var(--color-text-primary) !important;
+}
+
+[data-theme="light"] p,
+[data-theme="light"] span,
+[data-theme="light"] div {
+  color: var(--color-text-secondary) !important;
+}
+
+[data-theme="light"] label {
+  color: var(--color-text-primary) !important;
+}
+
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-bg-primary) !important;
+  border-color: var(--color-border-default) !important;
+}
+
+[data-theme="light"] button {
+  color: var(--color-text-primary) !important;
+}
+
+[data-theme="light"] a {
+  color: var(--color-primary-600) !important;
+}
+
+[data-theme="light"] table {
+  color: var(--color-text-primary) !important;
+}
+
+[data-theme="light"] thead th {
+  color: var(--color-text-primary) !important;
+}
+
+[data-theme="light"] tbody td {
+  color: var(--color-text-secondary) !important;
+}

@@ -22,7 +22,7 @@ function renderEditAlumni(params) {
         <div class="max-w-4xl mx-auto">
             <div class="bg-white rounded-xl shadow-sm p-6">
                 <div class="flex items-center gap-4 mb-6">
-                    <button onclick="navigateTo('/alumni/${alumni.id}')" class="text-gray-600 hover:text-gray-900">
+                    <button onclick="navigateTo('/alumni/${alumni.student}')" class="text-gray-600 hover:text-gray-900">
                         <i data-lucide="arrow-left" class="w-6 h-6"></i>
                     </button>
                     <h2 class="text-2xl font-bold text-gray-900">Edit Alumni Record</h2>
@@ -76,7 +76,7 @@ function renderEditAlumni(params) {
 
                     <!-- Form Actions -->
                     <div class="flex gap-4 justify-end pt-4 border-t border-gray-200">
-                        <button type="button" onclick="navigateTo('/alumni/${alumni.id}')" class="px-6 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                        <button type="button" onclick="navigateTo('/alumni/${alumni.student}')" class="px-6 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
                             Cancel
                         </button>
                         <button type="submit" class="px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors flex items-center gap-2">
@@ -92,7 +92,7 @@ function renderEditAlumni(params) {
     lucide.createIcons();
     
     // Handle form submission
-    document.getElementById('edit-alumni-form').addEventListener('submit', (e) => handleEditAlumni(e, alumni.id));
+    document.getElementById('edit-alumni-form').addEventListener('submit', (e) => handleEditAlumni(e, alumni.student));
 }
 
 function handleEditAlumni(e, alumniId) {

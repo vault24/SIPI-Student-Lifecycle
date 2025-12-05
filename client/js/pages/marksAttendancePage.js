@@ -13,46 +13,49 @@ async function renderMarksAttendance() {
     
     const mainContent = document.getElementById('main-content');
     mainContent.innerHTML = `
-        <div class="bg-white rounded-xl shadow-sm p-6">
-            <!-- Header -->
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-                <h2 class="text-2xl font-bold text-gray-900">Marks & Attendance</h2>
+        <div class="max-w-7xl mx-auto">
+            <!-- Premium Page Header with Gradient Background -->
+            <div class="glass-panel p-8 rounded-2xl backdrop-blur-md border border-white/20 mb-8 entrance-animation">
+                <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">Marks & Attendance</h1>
+                <p class="text-gray-600 dark:text-gray-400 text-lg">Track student academic performance and attendance records</p>
             </div>
 
-            <!-- Search and Filters -->
-            <div class="mb-6 space-y-4">
+            <!-- Premium Search and Filters -->
+            <div class="glass-panel p-6 md:p-8 mb-8 rounded-2xl backdrop-blur-md border border-white/20 entrance-animation">
+                <p class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-4">Search & Filter</p>
+                
                 <!-- Search Bar -->
-                <div class="relative">
+                <div class="relative mb-4">
                     <input 
                         type="text" 
                         id="student-search" 
                         placeholder="Search by name or roll number..." 
-                        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        onkeyup="filterStudentsMarksAttendance()"
+                        class="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:text-white text-sm font-medium transition-all"
+                        onkeyup="filterStudentsMarksAttendance().catch(e => console.error('Filter error:', e))"
                     >
                     <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
                 </div>
 
                 <!-- Filters Row -->
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <select id="department-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" onchange="filterStudentsMarksAttendance()">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+                    <select id="department-filter" class="px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:text-white text-sm font-medium transition-all" onchange="filterStudentsMarksAttendance().catch(e => console.error('Filter error:', e))">
                         <option value="">All Departments</option>
                         ${departments.map(dept => `<option value="${dept.name}">${dept.name}</option>`).join('')}
                     </select>
                     
-                    <select id="semester-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" onchange="filterStudentsMarksAttendance()">
+                    <select id="semester-filter" class="px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:text-white text-sm font-medium transition-all" onchange="filterStudentsMarksAttendance().catch(e => console.error('Filter error:', e))">
                         <option value="">All Semesters</option>
                         ${Array.from({ length: 8 }, (_, i) => i + 1).map(sem => `<option value="${sem}">Semester ${sem}</option>`).join('')}
                     </select>
                     
-                    <select id="status-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" onchange="filterStudentsMarksAttendance()">
+                    <select id="status-filter" class="px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:text-white text-sm font-medium transition-all" onchange="filterStudentsMarksAttendance().catch(e => console.error('Filter error:', e))">
                         <option value="">All Status</option>
                         <option value="active">Active</option>
                         <option value="inactive">Inactive</option>
                         <option value="graduated">Graduated</option>
                     </select>
 
-                    <button onclick="clearMarksAttendanceFilters()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2">
+                    <button onclick="clearMarksAttendanceFilters().catch(e => console.error('Filter error:', e))" class="px-4 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors flex items-center justify-center gap-2 text-sm font-medium dark:text-white">
                         <i data-lucide="x" class="w-4 h-4"></i>
                         Clear Filters
                     </button>
@@ -60,16 +63,16 @@ async function renderMarksAttendance() {
             </div>
 
             <!-- Student Selector -->
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Select Student</label>
-                <select id="student-selector" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    ${students.map(s => `<option value="${s.id}">${s.fullName} (${s.rollNumber}) - ${s.department}</option>`).join('')}
+            <div class="glass-panel p-6 md:p-8 mb-8 rounded-2xl backdrop-blur-md border border-white/20 entrance-animation">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">Select Student</label>
+                <select id="student-selector" class="w-full px-4 py-3 bg-white/50 dark:bg-gray-800/50 border border-white/20 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:text-white text-sm font-medium transition-all">
+                    ${students.map(s => `<option value="${s.id}">${s.fullNameEnglish || s.fullName} (${s.currentRollNumber || s.rollNumber}) - ${s.department?.name || s.department}</option>`).join('')}
                 </select>
-                <p id="student-count" class="text-sm text-gray-500 mt-2">${students.length} student(s) found</p>
+                <p id="student-count" class="text-sm text-gray-600 dark:text-gray-400 mt-3 font-medium">${students.length} student(s) found</p>
             </div>
 
             <!-- Semester Tabs -->
-            <div id="semester-tabs" class="flex gap-2 mb-6 overflow-x-auto">
+            <div id="semester-tabs" class="flex gap-2 mb-8 overflow-x-auto pb-2">
                 <!-- Tabs will be rendered here -->
             </div>
 
@@ -99,11 +102,11 @@ function updateMarksAttendance(studentId) {
     const student = dataManager.getStudent(studentId);
     if (!student) return;
     
-    // Render semester tabs
+    // Render semester tabs with premium styling
     const tabsContainer = document.getElementById('semester-tabs');
     tabsContainer.innerHTML = Array.from({ length: student.semester }, (_, i) => i + 1).map(sem => `
         <button onclick="selectSemester(${sem})" 
-            class="px-4 py-2 rounded-lg transition-colors ${sem === selectedSemester ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}">
+            class="px-6 py-3 rounded-xl transition-all font-semibold text-sm whitespace-nowrap transform hover:scale-105 ${sem === selectedSemester ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-xl' : 'glass-panel backdrop-blur-md border border-white/20 text-gray-700 dark:text-gray-300 hover:border-white/40'}">
             Semester ${sem}
         </button>
     `).join('');
@@ -135,81 +138,81 @@ function updateMarksAttendance(studentId) {
         attendance = Array.isArray(attendanceArray) ? attendanceArray.find(a => a.semester === selectedSemester) : null;
     }
     
-    // Render content
+    // Render content with premium styling
     const contentContainer = document.getElementById('marks-attendance-content');
     contentContainer.innerHTML = `
         <!-- Marks Section -->
-        <div>
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-semibold text-gray-900">Marks</h3>
-                <button onclick="addMarks('${studentId}')" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
-                    <i data-lucide="plus" class="w-4 h-4 inline"></i> Add Marks
+        <div class="entrance-animation">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Marks</h3>
+                <button onclick="addMarks('${studentId}')" class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all duration-300 transform hover:scale-105 font-medium text-sm">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Add Marks
                 </button>
             </div>
             ${marks ? `
-                <div class="space-y-3">
+                <div class="space-y-4">
                     ${marks.courses.map(course => `
-                        <div class="border border-gray-200 rounded-lg p-4">
-                            <div class="flex items-center justify-between mb-2">
+                        <div class="premium-card rounded-xl p-5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105">
+                            <div class="flex items-center justify-between mb-3">
                                 <div>
-                                    <h4 class="font-medium text-gray-900">${course.courseName}</h4>
-                                    <p class="text-sm text-gray-500">${course.courseCode} â€¢ ${course.credits} Credits</p>
+                                    <h4 class="font-bold text-gray-900 dark:text-white">${course.courseName}</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">${course.courseCode} • ${course.credits} Credits</p>
                                 </div>
                                 <div class="text-right">
-                                    <div class="text-2xl font-bold text-gray-900">${course.marks}</div>
-                                    <div class="text-sm text-gray-500">Grade: ${course.grade}</div>
+                                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">${course.marks}</div>
+                                    <div class="text-sm text-gray-600 dark:text-gray-400 font-semibold">Grade: ${course.grade}</div>
                                 </div>
                             </div>
                         </div>
                     `).join('')}
-                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+                    <div class="glass-panel p-6 rounded-xl backdrop-blur-md border border-white/20 bg-gradient-to-r from-blue-500/10 to-purple-500/10 mt-4">
                         <div class="flex items-center justify-between">
-                            <span class="font-medium text-blue-900">GPA</span>
-                            <span class="text-2xl font-bold text-blue-900">${marks.gpa}</span>
+                            <span class="font-bold text-gray-900 dark:text-white text-lg">GPA</span>
+                            <span class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">${marks.gpa}</span>
                         </div>
                     </div>
                 </div>
-            ` : '<p class="text-gray-500">No marks recorded for this semester</p>'}
+            ` : '<div class="glass-panel p-8 rounded-xl backdrop-blur-md border border-white/20 text-center"><p class="text-gray-600 dark:text-gray-400 font-medium">No marks recorded for this semester</p></div>'}
         </div>
 
         <!-- Attendance Section -->
-        <div>
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-semibold text-gray-900">Attendance</h3>
-                <button onclick="addAttendance('${studentId}')" class="text-green-600 hover:text-green-700 text-sm font-medium">
-                    <i data-lucide="plus" class="w-4 h-4 inline"></i> Add Attendance
+        <div class="entrance-animation">
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">Attendance</h3>
+                <button onclick="addAttendance('${studentId}')" class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white rounded-lg transition-all duration-300 transform hover:scale-105 font-medium text-sm">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Add Attendance
                 </button>
             </div>
             ${attendance ? `
-                <div class="space-y-3">
+                <div class="space-y-4">
                     ${attendance.courses.map(course => `
-                        <div class="border border-gray-200 rounded-lg p-4">
-                            <div class="flex items-center justify-between mb-2">
+                        <div class="premium-card rounded-xl p-5 backdrop-blur-md border border-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105">
+                            <div class="flex items-center justify-between mb-4">
                                 <div>
-                                    <h4 class="font-medium text-gray-900">${course.courseName}</h4>
-                                    <p class="text-sm text-gray-500">${course.courseCode}</p>
+                                    <h4 class="font-bold text-gray-900 dark:text-white">${course.courseName}</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">${course.courseCode}</p>
                                 </div>
                                 <div class="text-right">
-                                    <div class="text-lg font-bold ${course.percentage >= 75 ? 'text-green-600' : 'text-red-600'}">
+                                    <div class="text-3xl font-bold ${course.percentage >= 75 ? 'text-green-600' : 'text-red-600'}">
                                         ${course.percentage}%
                                     </div>
-                                    <div class="text-xs text-gray-500">${course.attendedClasses}/${course.totalClasses}</div>
+                                    <div class="text-xs text-gray-600 dark:text-gray-400 font-semibold">${course.attendedClasses}/${course.totalClasses}</div>
                                 </div>
                             </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2">
-                                <div class="h-2 rounded-full ${course.percentage >= 75 ? 'bg-green-600' : 'bg-red-600'}" 
+                            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                                <div class="h-3 rounded-full bg-gradient-to-r ${course.percentage >= 75 ? 'from-green-500 to-emerald-600' : 'from-red-500 to-pink-600'} transition-all duration-500" 
                                      style="width: ${course.percentage}%"></div>
                             </div>
                         </div>
                     `).join('')}
-                    <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-4 mt-4">
+                    <div class="glass-panel p-6 rounded-xl backdrop-blur-md border border-white/20 bg-gradient-to-r from-green-500/10 to-emerald-500/10 mt-4">
                         <div class="flex items-center justify-between">
-                            <span class="font-medium text-indigo-900">Overall Attendance</span>
-                            <span class="text-2xl font-bold text-indigo-900">${attendance.overallPercentage}%</span>
+                            <span class="font-bold text-gray-900 dark:text-white text-lg">Overall Attendance</span>
+                            <span class="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">${attendance.overallPercentage}%</span>
                         </div>
                     </div>
                 </div>
-            ` : '<p class="text-gray-500">No attendance recorded for this semester</p>'}
+            ` : '<div class="glass-panel p-8 rounded-xl backdrop-blur-md border border-white/20 text-center"><p class="text-gray-600 dark:text-gray-400 font-medium">No attendance recorded for this semester</p></div>'}
         </div>
     `;
     
@@ -230,7 +233,7 @@ function addMarks(studentId) {
     }
     
     showFormModal({
-        title: `Add Marks - ${student.fullName}`,
+        title: `Add Marks - ${student.fullNameEnglish || student.fullName}`,
         fields: [
             { 
                 id: 'semester', 
@@ -313,7 +316,7 @@ function addAttendance(studentId) {
     }
     
     showFormModal({
-        title: `Add Attendance - ${student.fullName}`,
+        title: `Add Attendance - ${student.fullNameEnglish || student.fullName}`,
         fields: [
             { 
                 id: 'semester', 
@@ -386,25 +389,32 @@ function addAttendance(studentId) {
     });
 }
 
-function filterStudentsMarksAttendance() {
+async function filterStudentsMarksAttendance() {
     const searchTerm = document.getElementById('student-search').value.toLowerCase();
     const departmentFilter = document.getElementById('department-filter').value;
     const semesterFilter = document.getElementById('semester-filter').value;
     const statusFilter = document.getElementById('status-filter').value;
     
-    let students = dataManager.getStudents();
+    let students = await dataManager.getStudents();
+    
+    // Ensure students is an array
+    if (!Array.isArray(students)) {
+        students = [];
+    }
     
     // Apply search filter
     if (searchTerm) {
         students = students.filter(student => 
-            student.fullName.toLowerCase().includes(searchTerm) ||
-            student.rollNumber.toLowerCase().includes(searchTerm)
+            (student.fullNameEnglish || student.fullName || '').toLowerCase().includes(searchTerm) ||
+            (student.currentRollNumber || student.rollNumber || '').toLowerCase().includes(searchTerm)
         );
     }
     
     // Apply department filter
     if (departmentFilter) {
-        students = students.filter(student => student.department === departmentFilter);
+        students = students.filter(student => 
+            (student.department?.name || student.department) === departmentFilter
+        );
     }
     
     // Apply semester filter
@@ -420,7 +430,7 @@ function filterStudentsMarksAttendance() {
     // Update student selector
     const studentSelector = document.getElementById('student-selector');
     studentSelector.innerHTML = students.map(s => 
-        `<option value="${s.id}">${s.fullName} (${s.rollNumber}) - ${s.department}</option>`
+        `<option value="${s.id}">${s.fullNameEnglish || s.fullName} (${s.currentRollNumber || s.rollNumber}) - ${s.department?.name || s.department}</option>`
     ).join('');
     
     // Update count
@@ -442,12 +452,12 @@ function filterStudentsMarksAttendance() {
     }
 }
 
-function clearMarksAttendanceFilters() {
+async function clearMarksAttendanceFilters() {
     document.getElementById('student-search').value = '';
     document.getElementById('department-filter').value = '';
     document.getElementById('semester-filter').value = '';
     document.getElementById('status-filter').value = '';
-    filterStudentsMarksAttendance();
+    await filterStudentsMarksAttendance();
 }
 
 window.renderMarksAttendance = renderMarksAttendance;

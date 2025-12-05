@@ -179,6 +179,32 @@
   color: var(--color-text-secondary);
 }
 
+/* Tailwind Text Color Overrides for Dark Mode */
+.dark .text-gray-50,
+[data-theme="dark"] .text-gray-50 {
+  color: var(--color-gray-50) !important;
+}
+
+.dark .text-gray-100,
+[data-theme="dark"] .text-gray-100 {
+  color: var(--color-gray-100) !important;
+}
+
+.dark .text-gray-200,
+[data-theme="dark"] .text-gray-200 {
+  color: var(--color-gray-200) !important;
+}
+
+.dark .text-gray-300,
+[data-theme="dark"] .text-gray-300 {
+  color: var(--color-gray-300) !important;
+}
+
+.dark .text-gray-400,
+[data-theme="dark"] .text-gray-400 {
+  color: var(--color-gray-400) !important;
+}
+
 .dark .text-gray-500,
 [data-theme="dark"] .text-gray-500 {
   color: var(--color-gray-500) !important;
@@ -192,6 +218,115 @@
 .dark .text-gray-700,
 [data-theme="dark"] .text-gray-700 {
   color: var(--color-gray-700) !important;
+}
+
+.dark .text-gray-800,
+[data-theme="dark"] .text-gray-800 {
+  color: var(--color-gray-800) !important;
+}
+
+.dark .text-gray-900,
+[data-theme="dark"] .text-gray-900 {
+  color: var(--color-gray-900) !important;
+}
+
+.dark .text-white,
+[data-theme="dark"] .text-white {
+  color: var(--color-text-primary) !important;
+}
+
+.dark .text-black,
+[data-theme="dark"] .text-black {
+  color: var(--color-text-primary) !important;
+}
+
+/* Semantic Text Colors */
+.dark .text-success,
+[data-theme="dark"] .text-success {
+  color: var(--color-success-dark) !important;
+}
+
+.dark .text-warning,
+[data-theme="dark"] .text-warning {
+  color: var(--color-warning-dark) !important;
+}
+
+.dark .text-error,
+[data-theme="dark"] .text-error {
+  color: var(--color-error-dark) !important;
+}
+
+.dark .text-info,
+[data-theme="dark"] .text-info {
+  color: var(--color-info-dark) !important;
+}
+
+/* ========================================
+   DARK MODE FORM ELEMENTS - TEXT ONLY
+   ======================================== */
+
+.dark label,
+[data-theme="dark"] label {
+  color: var(--color-text-primary) !important;
+}
+
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark input[type="number"],
+.dark input[type="date"],
+.dark input[type="time"],
+.dark input[type="search"],
+.dark textarea,
+.dark select,
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] input[type="date"],
+[data-theme="dark"] input[type="time"],
+[data-theme="dark"] input[type="search"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  color: var(--color-text-primary) !important;
+}
+
+.dark input[type="text"]::placeholder,
+.dark input[type="email"]::placeholder,
+.dark input[type="password"]::placeholder,
+.dark input[type="number"]::placeholder,
+.dark input[type="date"]::placeholder,
+.dark input[type="time"]::placeholder,
+.dark input[type="search"]::placeholder,
+.dark textarea::placeholder,
+[data-theme="dark"] input[type="text"]::placeholder,
+[data-theme="dark"] input[type="email"]::placeholder,
+[data-theme="dark"] input[type="password"]::placeholder,
+[data-theme="dark"] input[type="number"]::placeholder,
+[data-theme="dark"] input[type="date"]::placeholder,
+[data-theme="dark"] input[type="time"]::placeholder,
+[data-theme="dark"] input[type="search"]::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: var(--color-text-tertiary) !important;
+}
+
+/* ========================================
+   DARK MODE TABLE ELEMENTS - TEXT ONLY
+   ======================================== */
+
+.dark table,
+[data-theme="dark"] table {
+  color: var(--color-text-primary);
+}
+
+.dark thead th,
+[data-theme="dark"] thead th {
+  color: var(--color-text-primary) !important;
+}
+
+.dark tbody td,
+[data-theme="dark"] tbody td {
+  color: var(--color-text-secondary) !important;
 }
 
 /* ========================================
@@ -218,9 +353,47 @@
   background-color: var(--color-bg-tertiary) !important;
 }
 
+.dark .bg-gray-300,
+[data-theme="dark"] .bg-gray-300 {
+  background-color: var(--color-bg-tertiary) !important;
+}
+
+/* ========================================
+   DARK MODE BUTTON ADJUSTMENTS - TEXT ONLY
+   ======================================== */
+
+.dark button,
+[data-theme="dark"] button {
+  color: var(--color-text-primary);
+}
+
+/* ========================================
+   DARK MODE LINK ADJUSTMENTS
+   ======================================== */
+
+.dark a,
+[data-theme="dark"] a {
+  color: var(--color-primary-400) !important;
+}
+
+.dark a:hover,
+[data-theme="dark"] a:hover {
+  color: var(--color-primary-300) !important;
+}
+
 /* ========================================
    DARK MODE BORDER ADJUSTMENTS
    ======================================== */
+
+.dark .border-gray-50,
+[data-theme="dark"] .border-gray-50 {
+  border-color: var(--color-border-light) !important;
+}
+
+.dark .border-gray-100,
+[data-theme="dark"] .border-gray-100 {
+  border-color: var(--color-border-light) !important;
+}
 
 .dark .border-gray-200,
 [data-theme="dark"] .border-gray-200 {
@@ -230,6 +403,38 @@
 .dark .border-gray-300,
 [data-theme="dark"] .border-gray-300 {
   border-color: var(--color-border-dark) !important;
+}
+
+.dark .border-gray-400,
+[data-theme="dark"] .border-gray-400 {
+  border-color: var(--color-border-dark) !important;
+}
+
+.dark .border-white,
+[data-theme="dark"] .border-white {
+  border-color: var(--color-border-default) !important;
+}
+
+/* ========================================
+   DARK MODE PLACEHOLDER TEXT
+   ======================================== */
+
+.dark ::placeholder,
+[data-theme="dark"] ::placeholder {
+  color: var(--color-text-tertiary) !important;
+}
+
+/* ========================================
+   DARK MODE UTILITY TEXT CLASSES
+   ======================================== */
+
+.dark .text-center,
+.dark .text-left,
+.dark .text-right,
+[data-theme="dark"] .text-center,
+[data-theme="dark"] .text-left,
+[data-theme="dark"] .text-right {
+  color: inherit;
 }
 
 /* ========================================
@@ -390,4 +595,45 @@ body {
 .dark img:hover,
 [data-theme="dark"] img:hover {
   opacity: 1;
+}
+
+/* ========================================
+   DARK MODE TEXT-ONLY FIXES
+   ======================================== */
+
+/* Fix for definition lists - text only */
+.dark dt,
+[data-theme="dark"] dt {
+  color: var(--color-text-primary) !important;
+}
+
+.dark dd,
+[data-theme="dark"] dd {
+  color: var(--color-text-secondary) !important;
+}
+
+/* Fix for list items - text only */
+.dark li,
+[data-theme="dark"] li {
+  color: var(--color-text-secondary) !important;
+}
+
+/* Fix for code blocks - text only */
+.dark code,
+.dark pre,
+[data-theme="dark"] code,
+[data-theme="dark"] pre {
+  color: var(--color-text-primary) !important;
+}
+
+/* Fix for disabled elements - text only */
+.dark :disabled,
+[data-theme="dark"] :disabled {
+  color: var(--color-text-tertiary) !important;
+}
+
+/* Fix for readonly elements - text only */
+.dark :read-only,
+[data-theme="dark"] :read-only {
+  color: var(--color-text-secondary) !important;
 }

@@ -25,6 +25,7 @@ class ApplicationSubmitSerializer(serializers.ModelSerializer):
             'applicationType',
             'subject',
             'message',
+            'selectedDocuments',
         ]
     
     def validate_email(self, value):
@@ -55,6 +56,7 @@ class ApplicationSerializer(serializers.ModelSerializer):
             'applicationType',
             'subject',
             'message',
+            'selectedDocuments',
             'status',
             'submittedAt',
             'reviewedAt',

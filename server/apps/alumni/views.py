@@ -179,14 +179,14 @@ class AlumniViewSet(viewsets.ModelViewSet):
         # By support category
         by_support_category = dict(
             Alumni.objects.values('currentSupportCategory')
-            .annotate(count=Count('student'))
+            .annotate(count=Count('pk'))
             .values_list('currentSupportCategory', 'count')
         )
         
         # By graduation year
         by_graduation_year = dict(
             Alumni.objects.values('graduationYear')
-            .annotate(count=Count('student'))
+            .annotate(count=Count('pk'))
             .values_list('graduationYear', 'count')
         )
         

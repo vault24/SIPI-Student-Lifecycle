@@ -50,6 +50,7 @@ class Application(models.Model):
     )
     subject = models.CharField(max_length=255)
     message = models.TextField()
+    selectedDocuments = models.JSONField(default=list, blank=True)
     
     # Status and Review
     status = models.CharField(

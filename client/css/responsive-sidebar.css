@@ -1,0 +1,146 @@
+/* Responsive Sidebar Styles */
+
+/* Sidebar Container */
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    background: inherit;
+}
+
+/* Sidebar Navigation */
+#sidebar nav {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Navigation Links - Icon Alignment */
+#sidebar [data-nav-link] {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    min-height: 44px;
+    transition: all 0.2s ease-in-out;
+}
+
+#sidebar [data-nav-link] i {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+#sidebar [data-nav-link] span:not([class*="text-"]) {
+    flex: 1;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Sidebar Backdrop */
+#sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+#sidebar-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Desktop: Hide backdrop and menu button */
+@media (min-width: 1024px) {
+    #sidebar-backdrop {
+        display: none !important;
+    }
+    
+    button[onclick="toggleSidebar()"] {
+        display: none !important;
+    }
+}
+
+/* Mobile: Show menu button and sidebar slide animation */
+@media (max-width: 1023px) {
+    #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 16rem;
+        height: 100vh;
+        z-index: 50;
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    #sidebar:not(.-translate-x-full) {
+        transform: translateX(0);
+    }
+    
+    /* Prevent body scroll when sidebar is open */
+    body.sidebar-open {
+        overflow: hidden;
+    }
+}
+
+/* Tablet: Adjust sidebar width */
+@media (min-width: 768px) and (max-width: 1023px) {
+    #sidebar {
+        width: 14rem;
+    }
+}
+
+/* Small mobile: Adjust sidebar width */
+@media (max-width: 480px) {
+    #sidebar {
+        width: 100%;
+        max-width: 16rem;
+    }
+}
+
+/* Scrollbar styling for sidebar */
+#sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Navbar menu button alignment */
+button[onclick="toggleSidebar()"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Touch-friendly adjustments */
+@media (max-width: 768px) {
+    #sidebar [data-nav-link] {
+        min-height: 48px;
+        padding: 0.875rem 1rem;
+    }
+    
+    #sidebar [data-nav-link] i {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}

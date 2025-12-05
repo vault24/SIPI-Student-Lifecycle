@@ -143,8 +143,8 @@ async function filterApplications() {
 }
 
 // Application Details Page (Admin)
-function renderApplicationDetails(params) {
-    const application = applicationManager.getApplication(params.id);
+async function renderApplicationDetails(params) {
+    const application = await applicationManager.getApplication(params.id);
     
     if (!application) {
         showToast('Application not found', 'error');
@@ -282,11 +282,13 @@ function approveApplication(applicationId) {
         message: 'Are you sure you want to approve this application?',
         confirmText: 'Approve',
         type: 'success',
-        onConfirm: () => {
-            if (applicationManager.updateApplicationStatus(applicationId, 'approved', 'Application approved')) {
+        onConfirm: async () => {
+            if (await applicationManager.updateApplicationStatus(applicationId, 'approved', 'Application approved')) {
                 showToast('Application approved successfully', 'success');
-                navigateTo(`/application/${applicationId}`);
-                setTimeout(() => window.location.reload(), 1000);
+                // Redirect to document selection page for the approved application
+                setTimeout(() => {
+                    navigateTo(`/application-documents/${applicationId}`);
+                }, 500);
             } else {
                 showToast('Failed to approve application', 'error');
             }
@@ -300,8 +302,8 @@ function rejectApplication(applicationId) {
         message: 'Are you sure you want to reject this application? This action cannot be undone.',
         confirmText: 'Reject',
         type: 'danger',
-        onConfirm: () => {
-            if (applicationManager.updateApplicationStatus(applicationId, 'rejected', 'Application rejected')) {
+        onConfirm: async () => {
+            if (await applicationManager.updateApplicationStatus(applicationId, 'rejected', 'Application rejected')) {
                 showToast('Application rejected', 'success');
                 navigateTo('/applications');
             } else {
