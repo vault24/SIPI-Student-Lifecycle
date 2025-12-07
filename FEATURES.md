@@ -104,6 +104,7 @@ SIPI Student Lifecycle Manager is a comprehensive student information management
   - Established alumni
   - Alumni receiving support
   - Alumni needing support
+  - Add Alumni Manually
 
 - **Alumni Filtering**
   - By alumni type (recent/established)
