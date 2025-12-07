@@ -1,7 +1,7 @@
-# SIPI Student Lifecycle Manager - Complete Features Guide
+# Sirajganj Polytecnic Instutie  - Student Managment
 
 ## Overview
-SIPI Student Lifecycle Manager is a comprehensive student information management system designed to track and manage student data from admission through graduation and beyond. The platform provides a premium user interface with dark/light mode support, real-time analytics, and extensive student management capabilities.
+Sirajganj Polytecnic Instutie  - Student Managment is a comprehensive student information management system designed to track and manage student data from admission through graduation and beyond. The platform provides a premium user interface with dark/light mode support, real-time analytics, and extensive student management capabilities.
 
 ---
 
